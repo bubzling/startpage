@@ -8,4 +8,4 @@ What do I want to achieve now:
 
 - [ ] basic styling?
 - [ ] test keystrokes commands
-- [ ] simple url lists to use now
+- [x] simple url lists to use now
