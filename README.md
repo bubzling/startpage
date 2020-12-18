@@ -4,8 +4,5 @@ Simple personal browser launchpage, I'll make it customizable later if I have ti
 
 ## TODO
 
-What do I want to achieve now:
+- build docs
 
-- [ ] basic styling?
-- [ ] test keystrokes commands
-- [x] simple url lists to use now
