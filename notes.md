@@ -7,6 +7,7 @@
 
 - CRUD category
 - CRUD links
+- regex validation
 - Search text bar
 - keydown listener (check while search bar !focus)
 

@@ -1,84 +1,80 @@
-import React, { Component } from 'react'
-import { Button } from '@material-ui/core'
-
-
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
 /*
     component to list quick links
 */
 
-export default class UrlLists extends Component {
-    constructor(props) {
-        super(props);
-
-        this.handleKeyDown = this.handleKeyDown.bind(this);
-
-        this.state = {
-            linkGroups: [
-                // {
-                //     groupTitle: "School",
-                //     links: [
-                //         { text: 'Mail', url: 'email.itd.uts.edu.au/email/' },
-                //         { text: 'BlackBoard', url: 'online.uts.edu.au/webapps/login/' },
-                //         { text: 'Canvas', url: 'canvas.uts.edu.au/' },
-                //         { text: 'Github', url: 'github.com/' },
-                //     ]
-                // },
-                // {
-                //     groupTitle: "Chill",
-                //     links: [
-                //         { text: 'youtube', url: 'www.youtube.com/' },
-                //         { text: 'reddit', url: 'reddit.com/' },
-                //         { text: 'twitch', url: 'www.twitch.tv/' },
-                //         { text: 'primetv', url: 'primevideo.com//' },
-                //     ]
-                // }
+const UrlList = props => {
+    const [list, setList] = useState([
+        {
+            groupName: "School",
+            links: [
+                { text: 'Mail', url: 'email.itd.uts.edu.au/email/' },
+                { text: 'BlackBoard', url: 'online.uts.edu.au/webapps/login/' },
+                { text: 'Canvas', url: 'canvas.uts.edu.au/' },
+                { text: 'Github', url: 'github.com/' },
+            ]
+        },
+        {
+            groupName: "Chill",
+            links: [
+                { text: 'youtube', url: 'www.youtube.com/' },
+                { text: 'reddit', url: 'reddit.com/' },
+                { text: 'twitch', url: 'www.twitch.tv/' },
+                { text: 'primetv', url: 'primevideo.com/' },
             ]
         }
-    }
-
-    componentDidMount() {
-        // let a = JSON.stringify(this.state.linkGroups);
-        // localStorage.setItem("_startpageData", a);
-        
-        let b = JSON.parse(localStorage.getItem("_startpageData"));
-        console.log(b);
-        this.setState({
-            linkGroups: [...b]
-        })
+    ]);
 
 
-    }
+    console.log(list)
 
-    handleKeyDown(e) {
-        console.log(e.keyCode);
-    }
 
-    renderGroup() {
-        return this.state.linkGroups.map((group, index) => {
-            return <ul key={index}>
-                {group.groupTitle}
-                {this.renderLinks(group)}
-            </ul>
-        })
-    }
-
-    renderLinks(group) {
-        return group.links.map((link, index) => {
-            return (
-                <li key={index}>
-                    <a href={'https://' + link.url}>{link.text}</a>
-                </li>
-            )
-        })
-    }
-
-    render() {
-        return (
-            <div onKeyDown={this.handleKeyDown(this)}>
-                <h4>QuickLinks</h4>
-                {this.renderGroup()}
-            </div>
-        )
-    }
+    return (
+        <div>
+            <h3>This is the stuff</h3>
+            <ShowLists list={list} />
+        </div>
+    )
 }
+
+
+
+//     componentDidMount() {
+//         // let a = JSON.stringify(this.state.linkGroups);
+//         // localStorage.setItem("_startpageData", a);
+//         document.title = "Cheese";
+
+//         let b = JSON.parse(localStorage.getItem("_startpageData"));
+//         console.log(b);
+//         this.setState({
+//             linkGroups: [...b]
+//         })
+//     }
+
+
+
+// render each category
+const ShowLists = ({list}) => {
+    if (!list) return <> </>
+    return list.map((g, i) => (
+        <>
+            <p>{g.groupName}</p>
+            <ul key={i}>
+                <ShowLinks links={g.links} />
+            </ul>
+        </>
+    ))
+}
+
+// render the list of links in each category
+const ShowLinks = ({links}) => {
+    return links.map((l, i) => (
+        <li key={i}>
+            <a href={`https://${l.url}`}> {l.text} </a>
+        </li>
+    ))
+}
+
+export default UrlList;
