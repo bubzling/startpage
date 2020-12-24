@@ -18,36 +18,46 @@ const LinkCreate = props => {
     const [category, setCategory] = useState(-1);
     const [linkName, setLinkName] = useState("");
     const [url, setUrl] = useState("");
-    const [validated, setValidated] = useState(0);
+    // const [validated, setValidated] = useState(0);
 
-    const { addCat, list } = props;
+    const { addLink } = props;
 
-    const onCatChange = (e) => setCategory(e.target.value);
+    const onCatChange = (e) => {
+        console.log(e.target.value);
+        // console.log(i);
+        // console.log(v);
+        setCategory(e.target.value);
+    }
     const onLinkChange = (e) => setLinkName(e.target.value);
     const onUrlChange = (e) => setUrl(e.target.value);
 
 
     return (
         <div>
-            <FormControl className={classes.form}>
+            {/* <FormControl className={classes.form}>  
                 <Select onChange={onCatChange} value={category}>
-                    <MenuItem>Word</MenuItem>
+                    {
+                        list.map((cat, index) =>
+                            <MenuItem key={index} value={index}>{cat.groupName}</MenuItem>
+                        )
+                    }
                 </Select>
-            </FormControl>
-            <FormControl className={classes.form}>
+            </FormControl> */}
+            <FormControl className={classes.form}>  {/* link text box */}
                 <TextField label='add link'
                     value={linkName}
-                    onChange={onCatChange} />
+                    onChange={onLinkChange} />
             </FormControl>
-            <FormControl className={classes.form}>
+            <FormControl className={classes.form}>  {/* url box */}
                 <TextField label='url'
                     value={url}
                     onChange={onUrlChange} />
             </FormControl>
 
-            <Button variant='contained' onClick={() => addCat(category)}>Add Url</Button>
+            <Button variant='contained' onClick={() => addLink(category, linkName, url)}>Add Url</Button>
         </div>
     )
 }
+
 
 export default LinkCreate;

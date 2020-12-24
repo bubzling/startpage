@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
 
-import UrlLists from '../components/Links/UrlLists';
+/*
+  Main container for launchpad
+*/
+
+import UrlLists from '../components/Links/Listing';
 import SearchBar from '../components/Search/SearchBar';
 import CatCreate from '../components/CatCreate/CatCreate'
 import LinkCreate from '../components/LinkCreate/LinkCreate'
 
-// import sampleData from './sample'
+import sampleData from './sample'
+import { Box, Container } from '@material-ui/core'
+import { teal } from '@material-ui/core/colors';
 
-import Grid from '@material-ui/core/Grid'
-/*
-  Main container for launchpad
-*/
-// console.log("Samle", sampleData)
-/* data format
-[
+/* [ data format
   {
     groupName: category,
     links: [ { text, url } ]
   }
-]
-*/
+]*/
 const LOCAL = '_allLinks'
 
 const App = props => {
-  const [list, setList] = useState(JSON.parse(localStorage.getItem(LOCAL)));
+  const [list, setList] = useState(sampleData);
+  // const [list, setList] = useState(JSON.parse(localStorage.getItem(LOCAL)));
   // const [editMode, setEditMode] = useState(false);
 
   // ======================================================================
@@ -31,29 +31,35 @@ const App = props => {
   const save = (newList) => {
     localStorage.setItem(LOCAL, JSON.stringify(newList));
   }
-  
+
+  // const load = () => setList(localStorage.getItem(LOCAL));
+
   // cat create
   const addCat = (category) => {
     // TODO validate duplicate, empty string
     if (category) {
       setList(prev => {
-        let newList = [ ...prev, { groupName: category, links: [] }, ]
+        let newList = [...prev, { groupName: category, links: [] },]
         save(newList);
 
         return newList;
       });
-    } else {
-      alert("empty cat");
-    }
+    } else alert("empty cat");
   }
 
-  const addLink = (category, link) => {
-    if(category && link) {
-      setList(prev => {
-        
-      })
-    }
-  }
+  // const addLink = (category, text, url) => {  
+  //   if((category !== -1) && text && url) {
+  //     setList(prev => {
+  //       let newList = prev;
+  //       let newLinks = prev[category].links;
+  //       newLinks = [ ...newLinks, { text, url }]
+  //       newList[category].links = newLinks;
+  //       save(newList);
+
+  //       return newList;
+  //     })
+  //   } else alert("missing selection");
+  // }
 
   // update 
 
@@ -63,19 +69,28 @@ const App = props => {
 
 
   return (
-    <Grid className="container">
+    <Container maxWidth="lg" className="container">
+      <Box component="div"
+        width="50%"
+        padding="2.5% 5%"
+        margin="auto"
+        border="1px solid {teal[100]}"
+        style={{backgroundColor: teal[100]}}
+        >
+
       eya this is a shitty start page
-      <hr/>
+      <hr />
 
-      {/* CRUD placeholder */}
-      <CatCreate addCat={addCat} /> <hr/>
-      <LinkCreate list={list} addLink={addLink} /> <hr/>
+        {/* CRUD placeholder */}
+        <CatCreate addCat={addCat} /> <hr />
+        {/* <LinkCreate list={list} addLink={addLink} /> <hr/> */}
 
 
-      {/* ================ */}
-      <UrlLists list={list} /> <hr />
-      <SearchBar />   <hr />
-    </Grid>
+        {/* ================ */}
+        <UrlLists list={list} /> <hr />
+        <SearchBar />   <hr />
+      </Box>
+    </Container>
   );
 }
 
