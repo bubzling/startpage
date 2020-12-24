@@ -20,12 +20,12 @@ const UrlList = props => {
 const ShowLists = ({list}) => {
     if (!list) return <> </>
     return list.map((g, i) => (
-        <>
-            <p>{g.groupName}</p>
+        // <>
             <ul key={i}>
+                <label>{g.groupName}</label>
                 <ShowLinks links={g.links} />
             </ul>
-        </>
+        // </>
     ))
 }
 
