@@ -16,10 +16,9 @@ const CatCreate = props => {
     
     return (
         <div>
-            <TextField label='search'
+            <TextField label='add category'
                 value={category}
-                onChange={onCatChange}
-                variant='outlined' />
+                onChange={onCatChange} />
             <Button variant='contained' onClick={() => addCat(category)}>Add Category</Button>
         </div>
     )

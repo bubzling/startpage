@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import UrlLists from '../components/Links/UrlLists';
 import SearchBar from '../components/Search/SearchBar';
 import CatCreate from '../components/CatCreate/CatCreate'
+import LinkCreate from '../components/LinkCreate/LinkCreate'
 
 // import sampleData from './sample'
 
@@ -11,8 +12,7 @@ import Grid from '@material-ui/core/Grid'
   Main container for launchpad
 */
 // console.log("Samle", sampleData)
-/* 
-  data format
+/* data format
 [
   {
     groupName: category,
@@ -65,13 +65,16 @@ const App = props => {
   return (
     <Grid className="container">
       eya this is a shitty start page
+      <hr/>
 
       {/* CRUD placeholder */}
-      <CatCreate addCat={addCat} />
+      <CatCreate addCat={addCat} /> <hr/>
+      <LinkCreate list={list} addLink={addLink} /> <hr/>
+
 
       {/* ================ */}
-      <UrlLists list={list} />
-      <SearchBar />
+      <UrlLists list={list} /> <hr />
+      <SearchBar />   <hr />
     </Grid>
   );
 }
