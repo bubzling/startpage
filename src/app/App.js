@@ -22,8 +22,8 @@ import { teal } from '@material-ui/core/colors';
 const LOCAL = '_allLinks'
 
 const App = props => {
-  const [list, setList] = useState(sampleData);
-  // const [list, setList] = useState(JSON.parse(localStorage.getItem(LOCAL)));
+  // const [list, setList] = useState(sampleData);
+  const [list, setList] = useState(JSON.parse(localStorage.getItem(LOCAL)));
   // const [editMode, setEditMode] = useState(false);
 
   // ======================================================================
@@ -39,7 +39,9 @@ const App = props => {
     // TODO validate duplicate, empty string
     if (category) {
       setList(prev => {
-        let newList = [...prev, { groupName: category, links: [] },]
+        let newList = prev
+        newList[category] = []
+        console.log(newList)
         save(newList);
 
         return newList;
@@ -47,19 +49,23 @@ const App = props => {
     } else alert("empty cat");
   }
 
-  // const addLink = (category, text, url) => {  
-  //   if((category !== -1) && text && url) {
-  //     setList(prev => {
-  //       let newList = prev;
-  //       let newLinks = prev[category].links;
-  //       newLinks = [ ...newLinks, { text, url }]
-  //       newList[category].links = newLinks;
-  //       save(newList);
+  const addLink = (category, text, url) => {  
+    console.log(category, text, url);
+    if((category !== -1) && text && url) {
+      console.log("hoe")
+      setList(prev => {
+        let newList = prev;
+        let newLinks = prev[category].links;
+        newLinks = [ ...newLinks, { text, url }]
+        newList[category].links = newLinks;
+        save(newList);
 
-  //       return newList;
-  //     })
-  //   } else alert("missing selection");
-  // }
+        console.log(newList)
+
+        return newList;
+      })
+    } else alert("missing selection");
+  }
 
   // update 
 

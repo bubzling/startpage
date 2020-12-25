@@ -8,6 +8,8 @@
 - could try delete and rename category first??
 - then do crud for links
 
+using object attempt
+- transforming is simple but now category is not updated
 
 ## functionalities
 

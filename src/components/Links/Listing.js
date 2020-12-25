@@ -9,42 +9,32 @@ import LinkCreate from '../LinkCreate/LinkCreate'
 const UrlList = props => {
     const { list } = props;
 
+    // console.log(list)
+    // const theThing = () => {
+    //     for (let i in list)
+    // }
+
     return (
         <div>
             <h3>This is the stuff</h3>
-            <List list={list} />
+            {
+                Object.keys(list).map(n  => (   // each category
+                    <div>
+                        <h5>{n}</h5>
+                        {
+                            list[n].map(m => {  // each link
+                                console.log(m);
+                                return <a href={m.url}><li>{m.text}</li></a>
+                            })
+                        }
+                    </div>
+                ))
+            }
+
+            {/* <List list={list} /> */}
         </div>
     )
 }
 
-// render each category
-const List = (props) => {
-    const [list, setList] = useState(props.list);
-
-    const addLink = () => {
-        alert("Hey")
-    }
-
-    if (!list) return <> </>
-    return list.map((g, i) => (
-        <ul key={i}>
-            <hr />
-            <LinkCreate addLink={addLink} />
-            <hr />
-            <label>{g.groupName}</label>
-
-            <Links links={g.links} />
-        </ul>
-    ))
-}
-
-// render the list of links in each category
-const Links = ({ links }) => {
-    return links.map((l, i) => (
-        <li key={i}>
-            <a href={`https://${l.url}`}> {l.text} </a>
-        </li>
-    ))
-}
 
 export default UrlList;

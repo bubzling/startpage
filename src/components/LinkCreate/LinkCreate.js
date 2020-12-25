@@ -20,7 +20,7 @@ const LinkCreate = props => {
     const [url, setUrl] = useState("");
     // const [validated, setValidated] = useState(0);
 
-    const { addLink } = props;
+    const { addLink, list } = props;
 
     const onCatChange = (e) => {
         console.log(e.target.value);
@@ -34,7 +34,7 @@ const LinkCreate = props => {
 
     return (
         <div>
-            {/* <FormControl className={classes.form}>  
+            <FormControl className={classes.form}>  
                 <Select onChange={onCatChange} value={category}>
                     {
                         list.map((cat, index) =>
@@ -42,7 +42,7 @@ const LinkCreate = props => {
                         )
                     }
                 </Select>
-            </FormControl> */}
+            </FormControl>
             <FormControl className={classes.form}>  {/* link text box */}
                 <TextField label='add link'
                     value={linkName}
