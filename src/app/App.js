@@ -82,7 +82,10 @@ const App = props => {
     forceUpdate();
   }
 
-  // update 
+  // update
+  const updateLink = (catID, linkID, text, url) => {
+    console.log(catID, linkID, text, url);
+  }
 
   // delete
   const deleteCat = (catID) => {
