@@ -1,40 +1,31 @@
 import React, { useState, useEffect } from 'react'
 
-import LinkCreate from '../LinkCreate/LinkCreate' 
+import LinkCard from '../linkCard/LinkCard';
 
 /*
     component to list quick links
 */
 
-const UrlList = props => {
-    const { list } = props;
+const Listing = props => {
+    const { list, addLink, deleteCat } = props;
 
-    // console.log(list)
-    // const theThing = () => {
-    //     for (let i in list)
-    // }
+
+
+    const renderCard = () =>
+        list.map((data, i) =>
+            <LinkCard key={i} id={i} data={data} 
+                addLink={addLink}
+                deleteCat={deleteCat} />);
+
+
 
     return (
         <div>
             <h3>This is the stuff</h3>
-            {
-                Object.keys(list).map(n  => (   // each category
-                    <div>
-                        <h5>{n}</h5>
-                        {
-                            list[n].map(m => {  // each link
-                                console.log(m);
-                                return <a href={m.url}><li>{m.text}</li></a>
-                            })
-                        }
-                    </div>
-                ))
-            }
-
-            {/* <List list={list} /> */}
+            { renderCard() }
         </div>
     )
 }
 
 
-export default UrlList;
+export default Listing;

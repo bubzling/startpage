@@ -27,11 +27,37 @@ JSON string in local storage
 // stored as json string in local storage
 [
     {
-        groupName,
+        cat: "category name",
         links: [
-            { desc, url, keyCode }
+            { text: "display name", url: "link"}
         ]
 
     }
 ]
 ```
+
+## App architecture
+
+Vanilla react app using Material ui for styling
+
+no database required as it does speed up load time and development time.
+
+The whole purpos of this app is to assist with daily browser use, storing the user's go to links
+
+use cases:
+- add category
+- add links
+- edit links
+- edit category
+- delete links
+- delete category
+
+### operations
+
+- Main page
+  - Search bar
+  - Add category
+  - Category Links
+    - edit category (CRUD)
+    - add links
+    - edit links(CRUD)

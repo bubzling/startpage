@@ -8,11 +8,13 @@ const CatCreate = props => {
     const [ category, setCategory ] = useState("");
     const [ validated, setValidated ] = useState(0);
 
-    const { addCat } = props;
+    const { addCat, open } = props;
 
     const onCatChange = (e) => {
         setCategory(e.target.value);
     }
+
+    if(!open) return <> </>;
     
     return (
         <div>
