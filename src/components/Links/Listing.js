@@ -7,7 +7,7 @@ import LinkCard from '../linkCard/LinkCard';
 */
 
 const Listing = props => {
-    const { list, addLink, deleteCat } = props;
+    const { list, addLink, deleteCat, updateLink, deleteLink } = props;
 
 
 
@@ -15,7 +15,9 @@ const Listing = props => {
         list.map((data, i) =>
             <LinkCard key={i} id={i} data={data} 
                 addLink={addLink}
-                deleteCat={deleteCat} />);
+                deleteCat={deleteCat}
+                updateLink={updateLink}
+                deleteLink={deleteLink} />);
 
 
 

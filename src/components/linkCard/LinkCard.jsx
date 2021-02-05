@@ -4,7 +4,10 @@ import React, { useState } from 'react'
 // do add category here
 // render eacj categpry
 const LinkCard = (props) => {
-    const { data, id, addLink, deleteCat } = props;
+    const { 
+        data, id, addLink, deleteCat,
+        updateLink, deleteLink
+    } = props;
 
     const [text, setText] = useState("");
     const [url, setUrl] = useState("");
@@ -18,16 +21,26 @@ const LinkCard = (props) => {
     const toggleEdit = () => setEditMode(!editMode);
 
 
-    // console.log(data);
-    const renderEditMode = () => {
+    // show edit mode
+    // add link, delete category
+    // edit links
+    const renderEditMode = () => {  // currently add new link
         if (editMode)
             return <>
-                <Button onClick={() => {toggleEdit(); deleteCat(id)}}> delete {data.cat} - {id} </Button> <br />
-                <Button onClick={toggleDialog}> new link for {data.cat} - {id} </Button> <br />
-                <br />
                 <TextField onChange={onChangeText} value={text} placeholder="text" />
                 <TextField onChange={onChangeUrl} value={url} placeholder="url" />
-                <Button onClick={() => addLink(id, text, url)} >Add New Link</Button>
+                <Button onClick={() => {
+                    addLink(id, text, url);
+                    setText(""); setUrl("");
+                }} >Add New Link</Button>
+            </>
+    }
+
+    // display delete category
+    const renderEditButtons = () => {
+        if (editMode)
+            return <>
+                <Button onClick={() => { toggleEdit(); deleteCat(id) }}> delete {data.cat} - {id} </Button>
             </>
     }
 
@@ -36,12 +49,16 @@ const LinkCard = (props) => {
             {/* add category */}
             {/* normal */}
             <h3>{data.cat}</h3>
-            <Button onClick={toggleEdit} >Edit</Button> <br />
-
+            <Button onClick={toggleEdit} >Edit</Button>
+            {renderEditButtons()}
+            <br />
 
             <ul>
                 {renderEditMode()}
-                {data.links.map(e => <RenderLink link={e} editMode={editMode} />)}
+                {data.links.map((e, i) => 
+                    <RenderLink key={i} linkID={i} catID={id} link={e} editMode={editMode}
+                        toggleEdit={toggleEdit}
+                        deleteLink={deleteLink} updateLink={updateLink} />)}
             </ul>
         </div>
     )
@@ -50,17 +67,27 @@ const LinkCard = (props) => {
 // ________________________________________________________________________________
 
 const RenderLink = props => {
-    const { editMode, link } = props;
+    const { 
+        editMode, link,
+        catID, linkID, 
+        deleteLink, updateLink,
+        toggleEdit
+    } = props;
 
     const [lText, setLText] = useState(link.text);
     const [lUrl, setLUrl] = useState(link.url);
+
+    const update = () => {
+        updateLink(catID, linkID, lText, lUrl);
+        toggleEdit()
+    }
 
     if (editMode)
         return <>
             <TextField onChange={(e) => setLText(e.target.value)} value={lText} placeholder="text" />
             <TextField onChange={(e) => setLUrl(e.target.value)} value={lUrl} placeholder="url" />
-            <Button onClick={() => console.log("editing")} >edit</Button>
-            <Button onClick={() => console.log("delete")} >delete</Button>
+            <Button onClick={update} >edit</Button>
+            <Button onClick={() => deleteLink(catID, linkID)} >delete</Button>
         </>
 
     else

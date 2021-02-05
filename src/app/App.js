@@ -22,7 +22,7 @@ const LOCAL = '_allLinks'
 
 const App = props => {
   const [list, setList] = useState([]);
-  const [, forceUpdate] = useReducer(x => x+1, 0);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   // dialog
   const [catDialog, setCatDialog] = useState(false);
@@ -36,13 +36,13 @@ const App = props => {
   }, []);
   // ======================================================================
   // togglers
-  const toggleAddCat = () => {setCatDialog(!catDialog); console.log("hey", catDialog)}
+  const toggleAddCat = () => { setCatDialog(!catDialog); console.log("hey", catDialog) }
 
   // ======================================================================
   // save on every crud action
-  const save = (newList) => 
+  const save = (newList) =>
     localStorage.setItem(LOCAL, JSON.stringify(newList));
-  
+
 
   // const load = () => setList(localStorage.getItem(LOCAL));
 
@@ -51,7 +51,7 @@ const App = props => {
     // TODO validate duplicate
     if (category) {
       setList(prev => {
-        let newItem = { cat: category, links: []}
+        let newItem = { cat: category, links: [] }
         let newList = [...prev, newItem];
         save(newList);
         return newList;
@@ -63,7 +63,7 @@ const App = props => {
 
   const addLink = (catID, text, url) => {
     console.log(catID, text, url);
-    if((catID !== -1) && text && url) {
+    if ((catID !== -1) && text && url) {
 
       setList(prev => {
         let newLinks = { text, url };
@@ -84,24 +84,34 @@ const App = props => {
 
   // update
   const updateLink = (catID, linkID, text, url) => {
-    console.log(catID, linkID, text, url);
+    setList(prev => {
+      let rm = list.slice();
+      rm[catID].links[linkID] = { text, url };
+      save(rm);
+      return rm;
+    })
   }
 
   // delete
   const deleteCat = (catID) => {
-    let rm = list.slice();
-    rm.splice(catID, 1);
-
-    console.log("old", list);
-    console.log("new", rm);
     setList(prev => {
       let rm = prev.slice();
       rm.splice(catID, 1);
       save(rm);
       return rm;
     })
+  }
 
-    // save to thing
+  // delete single link
+  const deleteLink = (catID, linkID) => {
+    console.log("old", list);
+
+    setList(prev => {
+      let rm = prev.slice();  // create a copy
+      rm[catID].links.splice(linkID, 1);
+      save(rm);
+      return rm;
+    })
   }
 
   // ======================================================================
@@ -126,9 +136,11 @@ const App = props => {
 
 
         {/* ================ */}
-        <Listing list={list} 
+        <Listing list={list}
           addLink={addLink}
-          deleteCat={deleteCat} /> <hr />
+          deleteCat={deleteCat}
+          updateLink={updateLink}
+          deleteLink={deleteLink} /> <hr />
         <SearchBar />   <hr />
       </Box>
     </Container>
