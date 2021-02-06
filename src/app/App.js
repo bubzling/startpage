@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer } from 'react';
 
 /*
-  Main container for launchpad
+  Main container for startpage
 */
 
 import Listing from '../components/Links/Listing';
@@ -22,6 +22,7 @@ const LOCAL = '_allLinks'
 
 const App = props => {
   const [list, setList] = useState([]);
+  // hacky way to refresh rendering
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   // dialog
@@ -30,9 +31,7 @@ const App = props => {
 
   useEffect(() => {
     const DATA = JSON.parse(localStorage.getItem(LOCAL));
-    const SAMPLE = sampleData;
-    setList(SAMPLE);
-    console.log("io")
+    setList(DATA || []);
   }, []);
   // ======================================================================
   // togglers
@@ -40,8 +39,11 @@ const App = props => {
 
   // ======================================================================
   // save on every crud action
-  const save = (newList) =>
+  const save = (newList) => {
+
+    setList(newList);
     localStorage.setItem(LOCAL, JSON.stringify(newList));
+  }
 
 
   // const load = () => setList(localStorage.getItem(LOCAL));
@@ -50,19 +52,14 @@ const App = props => {
   const addCat = (category) => {
     // TODO validate duplicate
     if (category) {
-      setList(prev => {
         let newItem = { cat: category, links: [] }
-        let newList = [...prev, newItem];
+        let newList = [...list, newItem];
         save(newList);
-        return newList;
-      })
     } else alert("empty cat");
-
     forceUpdate();
   }
 
   const addLink = (catID, text, url) => {
-    console.log(catID, text, url);
     if ((catID !== -1) && text && url) {
 
       setList(prev => {

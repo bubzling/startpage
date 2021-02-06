@@ -32,6 +32,7 @@ const LinkCard = (props) => {
                 <Button onClick={() => {
                     addLink(id, text, url);
                     setText(""); setUrl("");
+                    toggleEdit(!editMode);
                 }} >Add New Link</Button>
             </>
     }
