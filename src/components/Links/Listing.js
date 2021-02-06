@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react'
-
+import React from 'react'
+import PropTypes from 'prop-types'
 import LinkCard from '../linkCard/LinkCard';
 
 /*
-    component to list quick links
+    component listing all the LinksCard by their categories
 */
 
 const Listing = props => {
     const { list, addLink, deleteCat, updateLink, deleteLink } = props;
 
-
-
+    // render each card
     const renderCard = () =>
         list.map((data, i) =>
             <LinkCard key={i} id={i} data={data} 
@@ -20,13 +19,20 @@ const Listing = props => {
                 deleteLink={deleteLink} />);
 
 
-
     return (
         <div>
             <h3>This is the stuff</h3>
             { renderCard() }
         </div>
     )
+}
+
+Listing.propTypes = {
+    list: PropTypes.array.isRequired,
+    addLink: PropTypes.func.isRequired,
+    deleteCat: PropTypes.func.isRequired,
+    updateLink: PropTypes.func.isRequired,
+    deleteLink: PropTypes.func.isRequired,
 }
 
 
