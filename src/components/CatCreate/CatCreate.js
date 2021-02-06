@@ -2,18 +2,17 @@ import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core';
 
+// Component handling creating category
 
 // this is just temporary
 const CatCreate = props => {
+    const { addCat, open } = props;
     const [ category, setCategory ] = useState("");
-    const [ validated, setValidated ] = useState(0);
+    // const [ validated, setValidated ] = useState(0);
 
-    const { addCat } = props;
-
-    const onCatChange = (e) => {
-        setCategory(e.target.value);
-    }
-    
+    const onCatChange = (e) => setCategory(e.target.value);
+        
+    if(!open) return <> </>;
     return (
         <div>
             <TextField label='add category'

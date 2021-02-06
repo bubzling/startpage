@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 
 /*
-  Main container for launchpad
+  Main container for startpage
 */
 
-import UrlLists from '../components/Links/Listing';
+import Listing from '../components/Links/Listing';
 import SearchBar from '../components/Search/SearchBar';
 import CatCreate from '../components/CatCreate/CatCreate'
-import LinkCreate from '../components/LinkCreate/LinkCreate'
 
-import sampleData from './sample'
-import { Box, Container } from '@material-ui/core'
+import { Box, Button, Container } from '@material-ui/core'
 import { teal } from '@material-ui/core/colors';
 
 /* [ data format
@@ -22,48 +20,68 @@ import { teal } from '@material-ui/core/colors';
 const LOCAL = '_allLinks'
 
 const App = props => {
-  const [list, setList] = useState(sampleData);
-  // const [list, setList] = useState(JSON.parse(localStorage.getItem(LOCAL)));
-  // const [editMode, setEditMode] = useState(false);
+  const DATA = JSON.parse(localStorage.getItem(LOCAL));
+  // hacky way to refresh rendering
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const [list, setList] = useState(DATA || []);
+  const [catDialog, setCatDialog] = useState(false);
+
+  // ======================================================================
+  // toggle add category menu
+  const toggleAddCat = () => { setCatDialog(!catDialog); console.log("hey", catDialog) }
 
   // ======================================================================
   // save on every crud action
   const save = (newList) => {
+    setList(newList);
     localStorage.setItem(LOCAL, JSON.stringify(newList));
   }
 
-  // const load = () => setList(localStorage.getItem(LOCAL));
-
-  // cat create
+  // add new category
   const addCat = (category) => {
-    // TODO validate duplicate, empty string
     if (category) {
-      setList(prev => {
-        let newList = [...prev, { groupName: category, links: [] },]
-        save(newList);
-
-        return newList;
-      });
+      let newItem = { cat: category, links: [] }
+      let newList = [...list, newItem];
+      save(newList);
     } else alert("empty cat");
+    forceUpdate();
   }
 
-  // const addLink = (category, text, url) => {  
-  //   if((category !== -1) && text && url) {
-  //     setList(prev => {
-  //       let newList = prev;
-  //       let newLinks = prev[category].links;
-  //       newLinks = [ ...newLinks, { text, url }]
-  //       newList[category].links = newLinks;
-  //       save(newList);
+  const addLink = (catID, text, url) => {
+    if ((catID !== -1) && text && url) {
+      let newList = list.slice();
+      // set new list
+      newList[catID] = {
+        ...newList[catID],
+        links: [...newList[catID].links, { text, url }],
+      };
+      save(newList);
 
-  //       return newList;
-  //     })
-  //   } else alert("missing selection");
-  // }
+    } else alert("missing selection");
+    forceUpdate();
+  }
 
-  // update 
+  // update
+  const updateLink = (catID, linkID, text, url) => {
+    let rm = list.slice();
+    rm[catID].links[linkID] = { text, url };
+    save(rm);
+  }
 
   // delete
+  const deleteCat = (catID) => {
+    let rm = list.slice();
+    rm.splice(catID, 1);
+    save(rm);
+  }
+
+  // delete single link
+  const deleteLink = (catID, linkID) => {
+    let rm = list.slice();  // create a copy
+    rm[catID].links.splice(linkID, 1);
+    save(rm);
+  }
 
   // ======================================================================
 
@@ -75,19 +93,24 @@ const App = props => {
         padding="2.5% 5%"
         margin="auto"
         border="1px solid {teal[100]}"
-        style={{backgroundColor: teal[100]}}
-        >
+        style={{ backgroundColor: teal[100] }}
+      >
 
-      eya this is a shitty start page
-      <hr />
+        <h2>Another Start page</h2>
+        <h5>but where is the rice</h5>
 
-        {/* CRUD placeholder */}
-        <CatCreate addCat={addCat} /> <hr />
-        {/* <LinkCreate list={list} addLink={addLink} /> <hr/> */}
+        {/* add new category */}
+        <Button variant="contained" onClick={toggleAddCat}> Add Category </Button>
+        <CatCreate open={catDialog} addCat={addCat} /> <hr />
 
+        {/* all links stuff */}
+        <Listing list={list}
+          addLink={addLink}
+          deleteCat={deleteCat}
+          updateLink={updateLink}
+          deleteLink={deleteLink} /> <hr />
 
-        {/* ================ */}
-        <UrlLists list={list} /> <hr />
+        {/* search bar */}
         <SearchBar />   <hr />
       </Box>
     </Container>

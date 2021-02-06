@@ -1,15 +1,20 @@
 # launchpage
 
-Simple personal browser launchpage, I'll make it customizable later if I have time
+Simple personal browser launchpage built using 
+- React
+- MaterialUI
 
-## TODO
+> Currently still in development
 
-- save and load
-- CRUD options
-  - add category
-  - add url in category
-  - delete
-  - swap position
-- build docs
+## To Run locally
 
+Install dependencies with `npm`
+```
+npm i
+```
+
+Start development environment
+```
+npm start
+```
 

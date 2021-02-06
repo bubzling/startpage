@@ -1,50 +1,39 @@
-import React, { useState, useEffect } from 'react'
-
-import LinkCreate from '../LinkCreate/LinkCreate' 
+import React from 'react'
+import PropTypes from 'prop-types'
+import LinkCard from '../linkCard/LinkCard';
 
 /*
-    component to list quick links
+    component listing all the LinksCard by their categories
 */
 
-const UrlList = props => {
-    const { list } = props;
+const Listing = props => {
+    const { list, addLink, deleteCat, updateLink, deleteLink } = props;
+
+    // render each card
+    const renderCard = () =>
+        list.map((data, i) =>
+            <LinkCard key={i} id={i} data={data} 
+                addLink={addLink}
+                deleteCat={deleteCat}
+                updateLink={updateLink}
+                deleteLink={deleteLink} />);
+
 
     return (
         <div>
             <h3>This is the stuff</h3>
-            <List list={list} />
+            { renderCard() }
         </div>
     )
 }
 
-// render each category
-const List = (props) => {
-    const [list, setList] = useState(props.list);
-
-    const addLink = () => {
-        alert("Hey")
-    }
-
-    if (!list) return <> </>
-    return list.map((g, i) => (
-        <ul key={i}>
-            <hr />
-            <LinkCreate addLink={addLink} />
-            <hr />
-            <label>{g.groupName}</label>
-
-            <Links links={g.links} />
-        </ul>
-    ))
+Listing.propTypes = {
+    list: PropTypes.array.isRequired,
+    addLink: PropTypes.func.isRequired,
+    deleteCat: PropTypes.func.isRequired,
+    updateLink: PropTypes.func.isRequired,
+    deleteLink: PropTypes.func.isRequired,
 }
 
-// render the list of links in each category
-const Links = ({ links }) => {
-    return links.map((l, i) => (
-        <li key={i}>
-            <a href={`https://${l.url}`}> {l.text} </a>
-        </li>
-    ))
-}
 
-export default UrlList;
+export default Listing;
