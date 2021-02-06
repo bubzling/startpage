@@ -12,14 +12,11 @@ const LinkCard = (props) => {
     const [text, setText] = useState("");
     const [url, setUrl] = useState("");
 
-    const [addDialog, setAddDialog] = useState(false);
     const [editMode, setEditMode] = useState(false);
 
     const onChangeText = (e) => setText(e.target.value);
     const onChangeUrl = (e) => setUrl(e.target.value);
-    const toggleDialog = () => setAddDialog(!addDialog);
     const toggleEdit = () => setEditMode(!editMode);
-
 
     // show edit mode
     // add link, delete category

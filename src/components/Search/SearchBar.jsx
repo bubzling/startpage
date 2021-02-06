@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
-import { Button } from '@material-ui/core';
 
 // this is just temporary
 const SearchBar = props => {
     const [search, setSearch] = useState("");
 
     const onSearchChange = (e) => setSearch(e.target.value);
-
-
 
     const onEnter = (e) => {
         if(e.keyCode === 13 && search !== "")  {
