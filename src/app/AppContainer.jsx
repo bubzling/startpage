@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useReducer } from "react";
 
 /*
   Main container for startpage
 */
+
+import App from "./App";
 
 import Listing from "../components/Links/Listing";
 import SearchBar from "../components/Search/SearchBar";
@@ -19,7 +21,7 @@ import { teal } from "@material-ui/core/colors";
 ]*/
 const LOCAL = "_allLinks";
 
-const App = (props) => {
+const AppContainer = (props) => {
   const DATA = JSON.parse(localStorage.getItem(LOCAL));
   // hacky way to refresh rendering
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
@@ -87,39 +89,12 @@ const App = (props) => {
   };
 
   // ======================================================================
+  const categoryOp = { addCat, deleteCat };
+  const linkOp = { addLink, updateLink, deleteLink }
 
   return (
-    <Container maxWidth='lg' className='container'>
-      <Box
-        component='div'
-        width='50%'
-        padding='2.5% 5%'
-        margin='auto'
-        border='1px solid {teal[100]}'
-        style={{ backgroundColor: teal[100] }}
-      >
-        <h2>Another Start page</h2>
-        <h5>but where is the rice</h5>
-        {/* add new category */}
-        <Button variant='contained' onClick={toggleAddCat}>
-          {" "}
-          Add Category{" "}
-        </Button>
-        <CatCreate open={catDialog} addCat={addCat} /> <hr />
-        {/* all links stuff */}
-        <Listing
-          list={list}
-          addLink={addLink}
-          deleteCat={deleteCat}
-          updateLink={updateLink}
-          deleteLink={deleteLink}
-        />{" "}
-        <hr />
-        {/* search bar */}
-        <SearchBar /> <hr />
-      </Box>
-    </Container>
+    <App list={list} categoryOp={categoryOp} linkOp={linkOp} />
   );
 };
 
-export default App;
+export default AppContainer;
