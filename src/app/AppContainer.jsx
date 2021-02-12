@@ -6,13 +6,6 @@ import React, { useState, useReducer } from "react";
 
 import App from "./App";
 
-import Listing from "../components/Links/Listing";
-import SearchBar from "../components/Search/SearchBar";
-import CatCreate from "../components/CatCreate/CatCreate";
-
-import { Box, Button, Container } from "@material-ui/core";
-import { teal } from "@material-ui/core/colors";
-
 /* [ data format
   {
     groupName: category,
@@ -27,14 +20,6 @@ const AppContainer = (props) => {
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
   const [list, setList] = useState(DATA || []);
-  const [catDialog, setCatDialog] = useState(false);
-
-  // ======================================================================
-  // toggle add category menu
-  const toggleAddCat = () => {
-    setCatDialog(!catDialog);
-    console.log("hey", catDialog);
-  };
 
   // ======================================================================
   // save on every crud action

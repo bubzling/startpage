@@ -12,12 +12,10 @@ const LinkCard = (props) => {
     const [text, setText] = useState("");
     const [url, setUrl] = useState("");
 
-    const [addDialog, setAddDialog] = useState(false);
     const [editMode, setEditMode] = useState(false);
 
     const onChangeText = (e) => setText(e.target.value);
     const onChangeUrl = (e) => setUrl(e.target.value);
-    const toggleDialog = () => setAddDialog(!addDialog);
     const toggleEdit = () => setEditMode(!editMode);
 
 
@@ -45,13 +43,17 @@ const LinkCard = (props) => {
             </>
     }
 
+    const renderLinks = () => data.links.map((e,i) => {
+        return <a style={{textDecoration: "none", marginLeft: "20px"}} href={e.url}>{e.text}</a>
+    })
+
     return (
         <div>
             {/* add category */}
             {/* normal */}
-            <h3>{data.cat}</h3>
-            <Button onClick={toggleEdit} >Edit</Button>
             {renderEditButtons()}
+            <Button onClick={toggleEdit} >Edit</Button>
+            <h3>/{data.cat}/ {renderLinks()}</h3>
             <br />
 
             <ul>

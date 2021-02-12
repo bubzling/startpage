@@ -5,6 +5,8 @@ import Listing from "../components/Links/Listing";
 import SearchBar from "../components/Search/SearchBar";
 import CatCreate from "../components/CatCreate/CatCreate";
 
+import useStyles from "./App.style"
+
 import { Box, Button, Container, Typography } from "@material-ui/core";
 
 const App = props => {
@@ -13,9 +15,11 @@ const App = props => {
 
     const toggleCatDialog = () => setCatDialog(!catDialog);
     
+    const classes = useStyles(); 
     return (
-    <div>
-      <Box>
+      // bg has image
+      // main container has a darker 
+      <Box className={classes.contentContainer}>
         <Typography variant="h1">Another Start page</Typography>
         <Typography variant="h4">but where is the rice</Typography>
 
@@ -35,12 +39,20 @@ const App = props => {
         {/* search bar */}
         <SearchBar /> 
       </Box>
-    </div>
     )
 }
 
 App.propTypes = {
-
+  list: PropTypes.array.isRequired,
+  categoryOp: PropTypes.exact({
+    addCat: PropTypes.func.isRequired,
+    deleteCat: PropTypes.func.isRequired,
+  }).isRequired,
+  linkOp: PropTypes.exact({
+    addLink: PropTypes.func.isRequired,
+    updateLink: PropTypes.func.isRequired,
+    deleteLink: PropTypes.func.isRequired,
+  }).isRequired,
 }
 
 export default App
