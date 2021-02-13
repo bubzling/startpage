@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   contentBackground: {
     backgroundColor: "rgba(119,152,96,0.6)",
     margin: "auto",
-    border: "5px solid #b9c7a7",
+    // border: "5px solid #b9c7a7",
   },
   content: {
     padding: "2em !important",
