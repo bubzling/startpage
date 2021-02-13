@@ -1,7 +1,10 @@
 * {
     padding: 0px !important;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-body {
-    background-color: #678d58
+body, html{
+    height: 100%;
+    /* background-color: #678d58 */
 }
