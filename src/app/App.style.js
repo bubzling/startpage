@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     // border: "5px solid #b9c7a7",
   },
   content: {
-    padding: "2em !important",
+    padding: "2em 3em !important",
     color: "white",
   },
 }));

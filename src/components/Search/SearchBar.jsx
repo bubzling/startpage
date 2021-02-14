@@ -1,23 +1,35 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
+import InputBase from "@material-ui/core/InputBase";
+import useStyles from './Search.style';
 
-// this is just temporary
+/* 
+  Search bar component
+*/
 const SearchBar = (props) => {
   const [search, setSearch] = useState("");
+  const classes = useStyles();
 
   const onSearchChange = (e) => setSearch(e.target.value);
 
   const onEnter = (e) => {
+    // console.log(e);
     if (e.keyCode === 13 && search !== "") {
       let searchTerm = search.split(" ").join("+");
       window.open(`https://google.com/search?q=${searchTerm}`);
+      window.close();
+      // window.close();
     }
+  };
+
+  const onKey = (e) => {
+    console.log("Gffasd");
   };
 
   return (
     <div>
-      <TextField
-        label='search'
+      <InputBase
+        className={classes.bar}
+        placeholder='search'
         value={search}
         onChange={onSearchChange}
         onKeyDown={onEnter}

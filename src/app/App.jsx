@@ -28,7 +28,7 @@ const App = (props) => {
 
         {/* add new category */}
         <Button variant='contained' onClick={toggleCatDialog}>
-          Add Category
+          +
         </Button>
         <CatCreate open={catDialog} addCat={categoryOp.addCat} />
 
