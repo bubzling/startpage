@@ -7,7 +7,7 @@ import LinkCard from "../linkCard/LinkCard";
 */
 
 const Listing = (props) => {
-  const { list, addLink, deleteCat, updateLink, deleteLink } = props;
+  const { list, deleteCat, linkOp } = props;
 
   // render each card
   const renderCard = () =>
@@ -16,16 +16,13 @@ const Listing = (props) => {
         key={i}
         id={i}
         data={data}
-        addLink={addLink}
-        deleteCat={deleteCat}
-        updateLink={updateLink}
-        deleteLink={deleteLink}
+        deleteCat={deleteCat} linkOp={linkOp}
       />
     ));
 
   return (
     <div>
-      <h3>This is the stuff</h3>
+      <br /> <br />
       {renderCard()}
     </div>
   );

@@ -5,8 +5,8 @@ import React, { useState } from 'react'
 // render eacj categpry
 const LinkCard = (props) => {
     const { 
-        data, id, addLink, deleteCat,
-        updateLink, deleteLink
+        data, id, deleteCat,
+        linkOp
     } = props;
 
     const [text, setText] = useState("");
@@ -28,7 +28,7 @@ const LinkCard = (props) => {
                 <TextField onChange={onChangeText} value={text} placeholder="text" />
                 <TextField onChange={onChangeUrl} value={url} placeholder="url" />
                 <Button onClick={() => {
-                    addLink(id, text, url);
+                    linkOp.addLink(id, text, url);
                     setText(""); setUrl("");
                     toggleEdit(!editMode);
                 }} >Add New Link</Button>
@@ -61,7 +61,7 @@ const LinkCard = (props) => {
                 {data.links.map((e, i) => 
                     <RenderLink key={i} linkID={i} catID={id} link={e} editMode={editMode}
                         toggleEdit={toggleEdit}
-                        deleteLink={deleteLink} updateLink={updateLink} />)}
+                        deleteLink={linkOp.deleteLink} updateLink={linkOp.updateLink} />)}
             </ul>
         </div>
     )

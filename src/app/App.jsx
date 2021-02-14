@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Listing from "../components/Links/Listing";
 import SearchBar from "../components/Search/SearchBar";
-import CatCreate from "../components/CatCreate/CatCreate";
+import CatAdd from '../components/CatCreate/CatAdd';
 
 import useStyles from "./App.style";
 
@@ -27,10 +27,8 @@ const App = (props) => {
         <Typography variant='h4'>but where is the rice</Typography>
 
         {/* add new category */}
-        <Button variant='contained' onClick={toggleCatDialog}>
-          +
-        </Button>
-        <CatCreate open={catDialog} addCat={categoryOp.addCat} />
+        <CatAdd catDialog={catDialog} toggleCatDialog={toggleCatDialog} addCat={categoryOp.addCat}/>
+
 
         {/* all links stuff */}
         <Listing list={list} deleteCat={categoryOp.deleteCat} linkOp={linkOp} />
