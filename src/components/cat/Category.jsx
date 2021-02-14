@@ -53,7 +53,7 @@ const Category = (props) => {
         <a
           key={i}
           className={classes.links}
-          href={e.url}
+          href={`https://${e.url}`}
         >
           {e.text}
         </a>
