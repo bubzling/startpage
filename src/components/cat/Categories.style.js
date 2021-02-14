@@ -7,9 +7,20 @@ const style = makeStyles((theme) => ({
     "&:hover": {
       fontWeight: "bold",
     },
+    "&:active": {
+      color: theme.colors.offWhite,
+    },
   },
   links: {
     color: theme.colors.offWhite,
+    textDecoration: "none",
+    marginLeft: theme.spacing(2),
+    "&:hover": {
+      fontWeight: "bold",
+    },
+    "&:active": {
+      color: theme.colors.black,
+    },
   },
 }));
 

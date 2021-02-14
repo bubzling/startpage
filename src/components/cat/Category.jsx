@@ -52,12 +52,7 @@ const Category = (props) => {
       return (
         <a
           key={i}
-          style={{
-            cursor: "pointer",
-            color: "red",
-            textDecoration: "none",
-            marginLeft: "20px",
-          }}
+          className={classes.links}
           href={e.url}
         >
           {e.text}

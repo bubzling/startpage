@@ -25,7 +25,9 @@ const App = (props) => {
           {/* title */}
           <div className={classes.box}>
             <Typography variant='h3'>Another Start page</Typography>
-            <Typography variant='h6'>but where is the rice</Typography>
+            <Typography variant='h6'>
+              by a <a className={classes.link} target="_blank" href="https://github.com/deBubz/startpage">little ol me</a>
+            </Typography>
           </div>
 
           {/* body */}

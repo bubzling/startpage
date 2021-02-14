@@ -6,6 +6,9 @@ const style = makeStyles((theme) => ({
     "&:hover": {
       fontWeight: "bold",
     },
+    "&:active": {
+      color: theme.colors.offWhite,
+    },
   },
 }));
 

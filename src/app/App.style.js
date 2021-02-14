@@ -21,6 +21,15 @@ const useStyles = makeStyles((theme) => ({
   box: {
     marginBottom: theme.spacing(3),
   },
+  link: {
+    color: theme.colors.black,
+    "&:hover": {
+      fontWeight: "bold",
+    },
+    "&:active": {
+      color: theme.colors.offWhite,
+    },
+  },
 }));
 
 export default useStyles;

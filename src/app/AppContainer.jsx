@@ -5,7 +5,7 @@ import React, { useState, useReducer } from "react";
 */
 
 import App from "./App";
-
+import sample from "./sample"
 /* [ data format
   {
     groupName: category,
@@ -16,6 +16,7 @@ const LOCAL = "_allLinks";
 
 const AppContainer = (props) => {
   const DATA = JSON.parse(localStorage.getItem(LOCAL));
+  // const DATA = sample;
   // hacky way to refresh rendering
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
