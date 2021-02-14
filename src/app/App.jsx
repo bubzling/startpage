@@ -7,7 +7,7 @@ import CatAdd from "../components/CatCreate/CatAdd";
 
 import useStyles from "./App.style";
 
-import { Box, Button, Container, Typography, Grid, Divider } from "@material-ui/core";
+import { Box, Typography, Grid, } from "@material-ui/core";
 
 const App = (props) => {
   const { list, categoryOp, linkOp } = props;
@@ -22,12 +22,14 @@ const App = (props) => {
     <Grid container className={classes.contentContainer}>
       <Grid item className={classes.contentBackground}>
         <Box className={classes.content}>
-          <div className={classes.titles}>
+          {/* title */}
+          <div className={classes.box}>
             <Typography variant='h3'>Another Start page</Typography>
             <Typography variant='h6'>but where is the rice</Typography>
           </div>
 
-          <div>
+          {/* body */}
+          <div className={classes.box}>
             {/* add new category */}
             <CatAdd
               catDialog={catDialog}
@@ -43,7 +45,7 @@ const App = (props) => {
           </div>
 
           {/* search bar */}
-          <SearchBar />
+          <SearchBar className={classes.box}/>
         </Box>
       </Grid>
     </Grid>

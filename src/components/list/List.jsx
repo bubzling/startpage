@@ -10,21 +10,15 @@ const List = (props) => {
   const { list, deleteCat, linkOp } = props;
 
   // render each card
-  const renderCard = () =>
-    list.map((data, i) => (
-      <Category
-        key={i}
-        id={i}
-        data={data}
-        deleteCat={deleteCat} linkOp={linkOp}
-      />
-    ));
-
-  return (
-    <>
-      {renderCard()}
-    </>
-  );
+  return list.map((data, i) => (
+    <Category
+      key={i}
+      id={i}
+      data={data}
+      deleteCat={deleteCat}
+      linkOp={linkOp}
+    />
+  ));
 };
 
 List.propTypes = {

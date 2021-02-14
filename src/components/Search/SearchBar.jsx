@@ -29,7 +29,7 @@ const SearchBar = (props) => {
     <div>
       <InputBase
         className={classes.bar}
-        placeholder='search'
+        placeholder='/search'
         value={search}
         onChange={onSearchChange}
         onKeyDown={onEnter}

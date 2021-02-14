@@ -13,14 +13,13 @@ const useStyles = makeStyles((theme) => ({
   contentBackground: {
     backgroundColor: "rgba(119,152,96,0.7)",
     margin: "auto",
-    // border: "5px solid #b9c7a7",
   },
   content: {
     padding: "2em 3em !important",
     color: theme.colors.offWhite,
   },
-  titles: {
-    marginBottom: theme.spacing(1),
+  box: {
+    marginBottom: theme.spacing(3),
   },
 }));
 

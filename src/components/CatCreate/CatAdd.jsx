@@ -16,8 +16,8 @@ const CatAdd = (props) => {
   return (
     <div>
 
-      <ButtonBase className={classes.button} onClick={toggleCatDialog}>
-        <Typography>
+      <ButtonBase onClick={toggleCatDialog}>
+        <Typography className={classes.button}>
           /add_category.sh
           </Typography>
       </ButtonBase>
