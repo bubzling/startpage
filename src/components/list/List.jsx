@@ -1,18 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import LinkCard from "../linkCard/LinkCard";
+import Category from "../cat/Category";
 
 /*
     component listing all the LinksCard by their categories
 */
 
-const Listing = (props) => {
+const List = (props) => {
   const { list, deleteCat, linkOp } = props;
 
   // render each card
   const renderCard = () =>
     list.map((data, i) => (
-      <LinkCard
+      <Category
         key={i}
         id={i}
         data={data}
@@ -21,14 +21,13 @@ const Listing = (props) => {
     ));
 
   return (
-    <div>
-      <br /> <br />
+    <>
       {renderCard()}
-    </div>
+    </>
   );
 };
 
-Listing.propTypes = {
+List.propTypes = {
   list: PropTypes.array.isRequired,
   addLink: PropTypes.func.isRequired,
   deleteCat: PropTypes.func.isRequired,
@@ -36,4 +35,4 @@ Listing.propTypes = {
   deleteLink: PropTypes.func.isRequired,
 };
 
-export default Listing;
+export default List;

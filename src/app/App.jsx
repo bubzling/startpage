@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import Listing from "../components/Links/Listing";
+import List from "../components/list/List";
 import SearchBar from "../components/Search/SearchBar";
 import CatAdd from "../components/CatCreate/CatAdd";
 
@@ -35,7 +35,7 @@ const App = (props) => {
               addCat={categoryOp.addCat}
             />
             {/* all links stuff */}
-            <Listing
+            <List
               list={list}
               deleteCat={categoryOp.deleteCat}
               linkOp={linkOp}

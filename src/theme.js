@@ -12,7 +12,7 @@ const Theme = createMuiTheme({
   colors: {
     offWhite: "#fafffc",
     mainBorder: "#b9c7a7",
-    black: "#71543d",
+    black: "#1d1e1d",
   },
 });
 
