@@ -8,16 +8,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "cover",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    border: "5px solid #d4d6cf",
+    border: `5px solid ${theme.colors.mainBorder}`,
   },
   contentBackground: {
-    backgroundColor: "rgba(119,152,96,0.6)",
+    backgroundColor: "rgba(119,152,96,0.7)",
     margin: "auto",
     // border: "5px solid #b9c7a7",
   },
   content: {
     padding: "2em 3em !important",
-    color: "white",
+    color: theme.colors.offWhite,
+  },
+  titles: {
+    marginBottom: theme.spacing(1),
   },
 }));
 

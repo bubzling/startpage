@@ -5,8 +5,14 @@ import { createMuiTheme } from "@material-ui/core/styles";
 */
 
 const Theme = createMuiTheme({
+  typography: {
+    fontSize: 18,
+  },
+  spacing: 16,
   colors: {
-    brightWhite: "",
+    offWhite: "#fafffc",
+    mainBorder: "#b9c7a7",
+    black: "#71543d",
   },
 });
 

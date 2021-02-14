@@ -2,7 +2,7 @@ import React from "react";
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import PropTypes from "prop-types";
 
-import { ButtonBase } from '@material-ui/core'
+import { ButtonBase, Typography } from '@material-ui/core'
 import CatInput from "./CatInput"
 import styles from './CatCreate.style'
 
@@ -15,13 +15,14 @@ const CatAdd = (props) => {
   
   return (
     <div>
-      <div>
 
-      <ButtonBase className={classes.button} variant='contained' onClick={toggleCatDialog}>
-        <AddCircleOutlineOutlinedIcon />
+      <ButtonBase className={classes.button} onClick={toggleCatDialog}>
+        <Typography>
+          /add_category.sh
+          </Typography>
       </ButtonBase>
 
-      </div>
+      {/* chuck this into dialogue */}
       <CatInput open={catDialog} addCat={addCat} />
     </div>
   );
