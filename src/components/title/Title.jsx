@@ -23,6 +23,7 @@ const Title = () => {
       <Typography variant='h6'>
         by a{" "}
         <a
+          rel="noopener noreferrer"
           className={classes.link}
           target='_blank'
           href='https://github.com/deBubz/startpage'

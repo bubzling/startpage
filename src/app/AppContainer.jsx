@@ -5,7 +5,7 @@ import React, { useState, useReducer } from "react";
 */
 
 import App from "./App";
-import sample from "./sample"
+// import sample from "./sample"
 /* [ data format
   {
     groupName: category,
@@ -32,7 +32,7 @@ const AppContainer = (props) => {
 
   const toggleEditMode = (categoryID) => {
     setAddMode(false);
-    setCatEdit(categoryOp);
+    setCatEdit(categoryID);
     setEditMode(!editMode);
   }
 

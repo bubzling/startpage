@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-import List from "../../components/list/List";
 import SearchBar from "../../components/Search/SearchBar";
 
-import { Box, Typography, ButtonBase } from "@material-ui/core";
+import { Typography, ButtonBase } from "@material-ui/core";
 import styles from "./Default.style";
+import Category from "../../components/cat/Category";
 
 const Default = (props) => {
   const { list, categoryOp, linkOp, modeOp } = props;
   const { toggleAddMode } = modeOp;
+
+  // render link groups on the main page
+  const renderLinks = () =>
+    list.map((data, i) => (
+      <Category
+        key={i}
+        id={i}
+        data={data}
+        modeOp={modeOp}
+      />
+    ));
 
   const classes = styles();
   return (
@@ -22,7 +33,7 @@ const Default = (props) => {
         </ButtonBase>
 
         {/* all links stuff */}
-        <List list={list} deleteCat={categoryOp.deleteCat} linkOp={linkOp} />
+        { renderLinks() }
       </div>
 
       {/* search bar */}
