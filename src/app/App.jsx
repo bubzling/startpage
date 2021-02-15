@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Default from "../views/default/Default";
 import Title from "../components/title/Title";
+import AddCategory from "../views/addCat/AddCategory";
 
 const App = (props) => {
   const { list, categoryOp, linkOp, modeOp } = props;
@@ -14,7 +15,7 @@ const App = (props) => {
 
   const renderModes = () => {
     if (editMode) return <p>edit mode</p>;
-    else if (addMode) return <p>add mode</p>;
+    else if (addMode) return <AddCategory toggle={modeOp.toggleAddMode} />;
     else return <Default list={list} categoryOp={categoryOp} linkOp={linkOp} modeOp={modeOp}/>;
   };
 
