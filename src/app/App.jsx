@@ -1,72 +1,120 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState, useReducer } from 'react';
 
-import useStyles from "./App.style";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Default from "../views/default/Default";
-import Title from "../components/title/Title";
-import AddCategory from "../views/addCat/AddCategory";
-import Edit from "../views/editCat/Edit";
+/*
+  Main container for startpage
+*/
 
-const App = (props) => {
-  const { list, categoryOp, linkOp, modeOp } = props;
-  const { editMode, addMode } = modeOp;
+import Listing from '../components/Links/Listing';
+import SearchBar from '../components/Search/SearchBar';
+import CatCreate from '../components/CatCreate/CatCreate'
 
-  const renderModes = () => {
-    if (editMode)
-      return (
-        <Edit
-          addLink={linkOp.addLink}
-          updateLink={linkOp.updateLink}
-          deleteLink = {linkOp.deleteLink}
-          list={list}
-          id={modeOp.catEdit}
-          toggle={modeOp.toggleEditMode}
-        />
-      );
-    else if (addMode)
-      return (
-        <AddCategory toggle={modeOp.toggleAddMode} addCat={categoryOp.addCat} />
-      );
-    else
-      return (
-        <Default
-          list={list}
-          categoryOp={categoryOp}
-          linkOp={linkOp}
-          modeOp={modeOp}
-        />
-      );
-  };
+import { Box, Button, Container } from '@material-ui/core'
+import { teal } from '@material-ui/core/colors';
 
-  const classes = useStyles();
+/* [ data format
+  {
+    groupName: category,
+    links: [ { text, url } ]
+  }
+]*/
+const LOCAL = '_allLinks'
+
+const App = props => {
+  const DATA = JSON.parse(localStorage.getItem(LOCAL));
+  // hacky way to refresh rendering
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const [list, setList] = useState(DATA || []);
+  const [catDialog, setCatDialog] = useState(false);
+
+  // ======================================================================
+  // toggle add category menu
+  const toggleAddCat = () => { setCatDialog(!catDialog); console.log("hey", catDialog) }
+
+  // ======================================================================
+  // save on every crud action
+  const save = (newList) => {
+    setList(newList);
+    localStorage.setItem(LOCAL, JSON.stringify(newList));
+  }
+
+  // add new category
+  const addCat = (category) => {
+    if (category) {
+      let newItem = { cat: category, links: [] }
+      let newList = [...list, newItem];
+      save(newList);
+    } else alert("empty cat");
+    forceUpdate();
+  }
+
+  const addLink = (catID, text, url) => {
+    if ((catID !== -1) && text && url) {
+      let newList = list.slice();
+      // set new list
+      newList[catID] = {
+        ...newList[catID],
+        links: [...newList[catID].links, { text, url }],
+      };
+      save(newList);
+
+    } else alert("missing selection");
+    forceUpdate();
+  }
+
+  // update
+  const updateLink = (catID, linkID, text, url) => {
+    let rm = list.slice();
+    rm[catID].links[linkID] = { text, url };
+    save(rm);
+  }
+
+  // delete
+  const deleteCat = (catID) => {
+    let rm = list.slice();
+    rm.splice(catID, 1);
+    save(rm);
+  }
+
+  // delete single link
+  const deleteLink = (catID, linkID) => {
+    let rm = list.slice();  // create a copy
+    rm[catID].links.splice(linkID, 1);
+    save(rm);
+  }
+
+  // ======================================================================
+
+
   return (
-    // bg has image
-    // main container has a darker
-    <Grid container className={classes.contentContainer}>
-      <Grid item className={classes.contentBackground}>
-        <Box className={classes.content}>
-          <Title />
+    <Container maxWidth="lg" className="container">
+      <Box component="div"
+        width="50%"
+        padding="2.5% 5%"
+        margin="auto"
+        border="1px solid {teal[100]}"
+        style={{ backgroundColor: teal[100] }}
+      >
 
-          {renderModes()}
-        </Box>
-      </Grid>
-    </Grid>
+        <h2>Another Start page</h2>
+        <h5>but where is the rice</h5>
+
+        {/* add new category */}
+        <Button variant="contained" onClick={toggleAddCat}> Add Category </Button>
+        <CatCreate open={catDialog} addCat={addCat} /> <hr />
+
+        {/* all links stuff */}
+        <Listing list={list}
+          addLink={addLink}
+          deleteCat={deleteCat}
+          updateLink={updateLink}
+          deleteLink={deleteLink} /> <hr />
+
+        {/* search bar */}
+        <SearchBar />   <hr />
+      </Box>
+    </Container>
   );
-};
-
-App.propTypes = {
-  list: PropTypes.array.isRequired,
-  categoryOp: PropTypes.exact({
-    addCat: PropTypes.func.isRequired,
-    deleteCat: PropTypes.func.isRequired,
-  }).isRequired,
-  linkOp: PropTypes.exact({
-    addLink: PropTypes.func.isRequired,
-    updateLink: PropTypes.func.isRequired,
-    deleteLink: PropTypes.func.isRequired,
-  }).isRequired,
-};
+}
 
 export default App;
