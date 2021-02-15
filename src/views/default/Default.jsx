@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import SearchBar from "../../components/Search/SearchBar";
 
@@ -8,7 +8,7 @@ import styles from "./Default.style";
 import Category from "../../components/cat/Category";
 
 const Default = (props) => {
-  const { list, categoryOp, linkOp, modeOp } = props;
+  const { list, modeOp } = props;
   const { toggleAddMode } = modeOp;
 
   // render link groups on the main page

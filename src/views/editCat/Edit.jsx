@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import {
-  makeStyles,
   Typography,
   ButtonBase,
   Grid,
   InputBase,
 } from "@material-ui/core";
-import { ClassSharp } from "@material-ui/icons";
 import EditLinks from "./EditLinks";
 import style from "./Edit.style";
 
@@ -59,7 +57,7 @@ const Edit = (props) => {
           />
         </Grid>
         <Grid item xs={2}>
-          <ButtonBase onClick={() => addLink(id, linkText, linkUrl)}>
+          <ButtonBase onClick={addNewLink}>
             <Typography className={classes.button}>[ add ]</Typography>
           </ButtonBase>
         </Grid>
