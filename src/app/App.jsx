@@ -16,7 +16,12 @@ const App = (props) => {
   const renderModes = () => {
     if (editMode)
       return (
-        <Edit list={list} id={modeOp.catEdit} toggle={modeOp.toggleEditMode} />
+        <Edit
+          addLink={linkOp.addLink}
+          list={list}
+          id={modeOp.catEdit}
+          toggle={modeOp.toggleEditMode}
+        />
       );
     else if (addMode)
       return (

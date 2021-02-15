@@ -37,6 +37,7 @@ const AddCategory = (props) => {
 
   const onNameChange = (e) => setCatName(e.target.value);
 
+  // submit add 
   const submit = () => {
     addCat(catName);
     toggle();
@@ -59,7 +60,7 @@ const AddCategory = (props) => {
       <form className={classes.form} onSubmit={submit}>
         <Grid container>
           <Grid item xs={6}>
-            <InputBase value={catName} onChange={onNameChange} placeholder='[category name]'></InputBase>
+            <InputBase value={catName} onChange={onNameChange} placeholder='[category name]' />
           </Grid>
           <Grid item xs={2}>
             <ButtonBase type='submit'>
