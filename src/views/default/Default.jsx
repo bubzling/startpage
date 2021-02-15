@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 
 import List from "../../components/list/List";
 import SearchBar from "../../components/Search/SearchBar";
-import CatAdd from "../../components/CatCreate/CatAdd";
 
-import { Box, Typography, Grid } from "@material-ui/core";
+import { Box, Typography, ButtonBase } from "@material-ui/core";
 import styles from "./Default.style";
 
 const Default = (props) => {
@@ -19,11 +18,10 @@ const Default = (props) => {
       {/* body */}
       <div className={classes.box}>
         {/* add new category */}
-        <CatAdd
-          catDialog={catDialog}
-          toggleCatDialog={toggleCatDialog}
-          addCat={categoryOp.addCat}
-        />
+        <ButtonBase onClick={toggleCatDialog}>
+          <Typography className={classes.link}>/add_category.sh</Typography>
+        </ButtonBase>
+
         {/* all links stuff */}
         <List list={list} deleteCat={categoryOp.deleteCat} linkOp={linkOp} />
       </div>
