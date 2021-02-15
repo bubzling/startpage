@@ -5,7 +5,6 @@ import {
   ButtonBase,
   Typography,
   makeStyles,
-  FormControl,
   InputBase,
   Grid,
 } from "@material-ui/core";
@@ -33,14 +32,17 @@ const style = makeStyles((theme) => ({
 }));
 
 const AddCategory = (props) => {
-  const { toggle } = props;
+  const { toggle, addCat } = props;
   const [catName, setCatName] = useState("");
 
-  const classes = style();
+  const onNameChange = (e) => setCatName(e.target.value);
 
   const submit = () => {
-    alert("ee");
+    addCat(catName);
+    toggle();
   };
+
+  const classes = style();
   return (
     <>
       <ButtonBase onClick={toggle}>
@@ -57,7 +59,7 @@ const AddCategory = (props) => {
       <form className={classes.form} onSubmit={submit}>
         <Grid container>
           <Grid item xs={6}>
-            <InputBase placeholder='[category name]'></InputBase>
+            <InputBase value={catName} onChange={onNameChange} placeholder='[category name]'></InputBase>
           </Grid>
           <Grid item xs={2}>
             <ButtonBase type='submit'>

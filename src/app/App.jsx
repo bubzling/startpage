@@ -15,7 +15,7 @@ const App = (props) => {
 
   const renderModes = () => {
     if (editMode) return <p>edit mode</p>;
-    else if (addMode) return <AddCategory toggle={modeOp.toggleAddMode} />;
+    else if (addMode) return <AddCategory toggle={modeOp.toggleAddMode} addCat={categoryOp.addCat} />;
     else return <Default list={list} categoryOp={categoryOp} linkOp={linkOp} modeOp={modeOp}/>;
   };
 
