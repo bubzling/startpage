@@ -18,6 +18,8 @@ const App = (props) => {
       return (
         <Edit
           addLink={linkOp.addLink}
+          updateLink={linkOp.updateLink}
+          deleteLink = {linkOp.deleteLink}
           list={list}
           id={modeOp.catEdit}
           toggle={modeOp.toggleEditMode}
@@ -49,8 +51,6 @@ const App = (props) => {
 
           {renderModes()}
         </Box>
-        {/* containerize */}
-        {/* containerize */}
       </Grid>
     </Grid>
   );

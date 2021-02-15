@@ -9,19 +9,8 @@ import {
   InputBase,
 } from "@material-ui/core";
 import { ClassSharp } from "@material-ui/icons";
-
-const style = makeStyles((theme) => ({
-  toggler: {
-    color: theme.colors.black,
-    fontStyle: "italic",
-    "&:hover": { fontWeight: "bold" },
-    "&:active": { color: theme.colors.offWhite },
-  },
-  blackText: { color: theme.colors.black },
-  whiteText: { color: theme.colors.offWhite },
-  box: { marginBottom: theme.spacing(1) },
-  button: { "&:hover": { fontWeight:"bold"}}
-}));
+import EditLinks from "./EditLinks";
+import style from "./Edit.style";
 
 /* 
   edit mode
@@ -35,7 +24,7 @@ const style = makeStyles((theme) => ({
 */
 
 const Edit = (props) => {
-  const { id, toggle, list, addLink } = props;
+  const { id, toggle, list, addLink, updateLink, deleteLink } = props;
   const [linkText, setLinkText] = useState("");
   const [linkUrl, setLinkUrl] = useState("");
 
@@ -48,6 +37,57 @@ const Edit = (props) => {
   };
 
   const classes = style();
+
+  const addNew = () => (
+    <div className={classes.box}>
+      <Typography className={classes.blackText}>
+        <span className={classes.whiteText}>add</span> a new link
+      </Typography>
+      <Grid container>
+        <Grid item xs={4}>
+          <InputBase
+            value={linkText}
+            onChange={onTextChange}
+            placeholder='[ name ]'
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <InputBase
+            value={linkUrl}
+            onChange={onUrlChange}
+            placeholder='[ url ]'
+          />
+        </Grid>
+        <Grid item xs={2}>
+          <ButtonBase onClick={() => addLink(id, linkText, linkUrl)}>
+            <Typography className={classes.button}>[ add ]</Typography>
+          </ButtonBase>
+        </Grid>
+      </Grid>
+    </div>
+  );
+
+  const edit = () => {
+    if (list[id].links.length > 0)
+      return (
+        <div className={classes.box}>
+          <Typography className={classes.blackText}>
+            <span className={classes.whiteText}>edit</span> existing links
+          </Typography>
+          {list[id].links.map((data, i) => (
+            <EditLinks
+              key={i}
+              catId={id}
+              id={i}
+              data={data}
+              updateLink={updateLink}
+              deleteLink={deleteLink}
+            />
+          ))}
+        </div>
+      );
+  };
+
   return (
     <>
       <div className={classes.box}>
@@ -59,37 +99,10 @@ const Edit = (props) => {
       </div>
 
       {/* add new links */}
-      <div className={classes.box}>
-        <Typography className={classes.blackText}>
-          <span className={classes.whiteText}>add</span> a new link
-        </Typography>
-        <Grid container>
-          <Grid item xs={4}>
-            <InputBase
-              value={linkText}
-              onChange={onTextChange}
-              placeholder='[ name ]'
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <InputBase
-              value={linkUrl}
-              onChange={onUrlChange}
-              placeholder='[ url ]'
-            />
-          </Grid>
-          <Grid item xs={2}>
-            <ButtonBase onClick={() => addLink(id, linkText, linkUrl)}>
-              <Typography className={classes.button}>[ add ]</Typography>
-            </ButtonBase>
-          </Grid>
-        </Grid>
-      </div>
+      {addNew()}
 
       {/* edit existing links */}
-      <Typography className={classes.blackText}>
-        <span className={classes.whiteText}>edit</span> existing links
-      </Typography>
+      {edit()}
     </>
   );
 };
