@@ -8,9 +8,8 @@ import { Box, Typography, ButtonBase } from "@material-ui/core";
 import styles from "./Default.style";
 
 const Default = (props) => {
-  const { list, categoryOp, linkOp } = props;
-  const [catDialog, setCatDialog] = useState(false);
-  const toggleCatDialog = () => setCatDialog(!catDialog);
+  const { list, categoryOp, linkOp, modeOp } = props;
+  const { toggleAddMode } = modeOp;
 
   const classes = styles();
   return (
@@ -18,7 +17,7 @@ const Default = (props) => {
       {/* body */}
       <div className={classes.box}>
         {/* add new category */}
-        <ButtonBase onClick={toggleCatDialog}>
+        <ButtonBase onClick={toggleAddMode}>
           <Typography className={classes.link}>/add_category.sh</Typography>
         </ButtonBase>
 

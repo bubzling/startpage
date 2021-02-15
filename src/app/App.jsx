@@ -15,7 +15,7 @@ const App = (props) => {
   const renderModes = () => {
     if (editMode) return <p>edit mode</p>;
     else if (addMode) return <p>add mode</p>;
-    else return <Default list={list} categoryOp={categoryOp} linkOp={linkOp} />;
+    else return <Default list={list} categoryOp={categoryOp} linkOp={linkOp} modeOp={modeOp}/>;
   };
 
   const classes = useStyles();
