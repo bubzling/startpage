@@ -21,12 +21,25 @@ const AppContainer = (props) => {
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
   const [list, setList] = useState(DATA || []);
+  const [addMode, setAddMode] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [catEdit, setCatEdit] = useState(0);
+
+  const toggleAddMode = () => {
+    setEditMode(false);
+    setAddMode(!addMode);
+  }
+
+  const toggleEditMode = (categoryID) => {
+    setAddMode(false);
+    setCatEdit(categoryOp);
+    setEditMode(!editMode);
+  }
 
   // ======================================================================
   // save on every crud action
   const save = (newList) => {
     setList(newList);
-
     localStorage.setItem(LOCAL, JSON.stringify(newList));
   };
 
@@ -40,6 +53,7 @@ const AppContainer = (props) => {
     forceUpdate();
   };
 
+  // add new link
   const addLink = (catID, text, url) => {
     if (catID !== -1 && text && url) {
       let newList = list.slice();
@@ -53,14 +67,14 @@ const AppContainer = (props) => {
     forceUpdate();
   };
 
-  // update
+  // update a link
   const updateLink = (catID, linkID, text, url) => {
     let rm = list.slice();
     rm[catID].links[linkID] = { text, url };
     save(rm);
   };
 
-  // delete
+  // delete category
   const deleteCat = (catID) => {
     let rm = list.slice();
     rm.splice(catID, 1);
@@ -75,11 +89,12 @@ const AppContainer = (props) => {
   };
 
   // ======================================================================
+  const modeOp = { toggleEditMode, toggleAddMode, catEdit, addMode, editMode };
   const categoryOp = { addCat, deleteCat };
   const linkOp = { addLink, updateLink, deleteLink }
 
   return (
-    <App list={list} categoryOp={categoryOp} linkOp={linkOp} />
+    <App list={list} categoryOp={categoryOp} linkOp={linkOp} modeOp={modeOp}/>
   );
 };
 

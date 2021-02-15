@@ -21,10 +21,6 @@ const SearchBar = (props) => {
     }
   };
 
-  const onKey = (e) => {
-    console.log("Gffasd");
-  };
-
   return (
     <div>
       <InputBase

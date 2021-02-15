@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-import List from "../components/list/List";
-import SearchBar from "../components/Search/SearchBar";
-import CatAdd from "../components/CatCreate/CatAdd";
-
 import useStyles from "./App.style";
-
-import { Box, Typography, Grid, } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Default from "../views/default/Default";
 
 const App = (props) => {
-  const { list, categoryOp, linkOp } = props;
-  const [catDialog, setCatDialog] = useState(false);
+  const { list, categoryOp, linkOp, modeOp } = props;
+  const { editMode, addMode } = modeOp;
 
-  const toggleCatDialog = () => setCatDialog(!catDialog);
+
+  const renderModes = () => {
+    if(editMode) return <p>edit mode</p>
+    else if(addMode) return <p>add mode</p>
+    else return <Default list={list} categoryOp={categoryOp} linkOp={linkOp} />
+  }
 
   const classes = useStyles();
   return (
@@ -21,34 +22,9 @@ const App = (props) => {
     // main container has a darker
     <Grid container className={classes.contentContainer}>
       <Grid item className={classes.contentBackground}>
-        <Box className={classes.content}>
-          {/* title */}
-          <div className={classes.box}>
-            <Typography variant='h3'>Another Start page</Typography>
-            <Typography variant='h6'>
-              by a <a className={classes.link} target="_blank" href="https://github.com/deBubz/startpage">little ol me</a>
-            </Typography>
-          </div>
-
-          {/* body */}
-          <div className={classes.box}>
-            {/* add new category */}
-            <CatAdd
-              catDialog={catDialog}
-              toggleCatDialog={toggleCatDialog}
-              addCat={categoryOp.addCat}
-            />
-            {/* all links stuff */}
-            <List
-              list={list}
-              deleteCat={categoryOp.deleteCat}
-              linkOp={linkOp}
-            />
-          </div>
-
-          {/* search bar */}
-          <SearchBar className={classes.box}/>
-        </Box>
+        {/* containerize */}
+        { renderModes() }
+        {/* containerize */}
       </Grid>
     </Grid>
   );
