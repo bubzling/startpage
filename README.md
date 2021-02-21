@@ -2,7 +2,7 @@
 
 [![debubz/startpage CI](https://github.com/deBubz/startpage/actions/workflows/node.js.yml/badge.svg)](https://github.com/deBubz/startpage/actions/workflows/node.js.yml)
 
-A simple and customizable startpage built using `React`. Currently hosted on [netlify](https://another-startpage.netlify.app/)
+A simple and customizable startpage built using `React`.
 
 ## To use
 
@@ -29,9 +29,9 @@ serve /path/to/build -l <PORT_NUMBER>
 > **NOTE**: this starts a static server process locally on your machine.
 > This processed will be killed every time you turn your computer off.
 >
-> You may need to create a serve script(step 4) which runs everytime your machine is booted up.
+> You may need to create a script(step 4) which runs everytime your machine is booted up.
 
-1. Get the browser extention for [firefox](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) or [chrome](https://chrome.google.com/webstore/detail/custom-new-tab-url/mmjbdbjnoablegbkcklggeknkfcjkjia?hl=en)
+5. Get the browser extention for [firefox](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) or [chrome](https://chrome.google.com/webstore/detail/custom-new-tab-url/mmjbdbjnoablegbkcklggeknkfcjkjia?hl=en)
 6. set the new tab url to be where the page is served 
 
 ### Development mode
