@@ -20,7 +20,7 @@ const EditLinks = (props) => {
     updateLink(catId, id, text, url);
     setText("");
     setUrl("");
-  }
+  };
 
   useEffect(() => {
     setText("");
@@ -34,11 +34,17 @@ const EditLinks = (props) => {
         <InputBase
           value={text}
           onChange={onTextChange}
+          onClick={() => setText(baseText)}
           placeholder={baseText}
         />
       </Grid>
       <Grid item xs={4}>
-        <InputBase value={url} onChange={onUrlChange} placeholder={baseUrl} />
+        <InputBase
+          value={url}
+          onChange={onUrlChange}
+          onClick={() => setUrl(baseUrl)}
+          placeholder={baseUrl}
+        />
       </Grid>
       <Grid item xs={2}>
         <ButtonBase onClick={update}>
