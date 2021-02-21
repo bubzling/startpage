@@ -1,12 +1,8 @@
-[!image](./assets/st01.png)
+![image](./assets/st01.png)
 
+[![debubz/startpage CI](https://github.com/deBubz/startpage/actions/workflows/node.js.yml/badge.svg)](https://github.com/deBubz/startpage/actions/workflows/node.js.yml)
 
-Simple 
-
-- React
-- MaterialUI
-
-> Currently still in development
+A simple and customizable startpage built using `React`   
 
 ## To Run locally
 
