@@ -34,12 +34,43 @@ serve /path/to/build -l <PORT_NUMBER>
 1. Get the browser extention for [firefox](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) or [chrome](https://chrome.google.com/webstore/detail/custom-new-tab-url/mmjbdbjnoablegbkcklggeknkfcjkjia?hl=en)
 6. set the new tab url to be where the page is served 
 
+### Development mode
+
+Simply clone the repo, install dependencies then 
+```
+yarn start
+```
+
+## Some Info
+
+This webapp needs to load quickly as its ment to be a part of a user's workflow.
+Therefore, the data for this app is stored in the `localStorage`. Which:
+- provide a quick access to render user shorcut links
+- allow faster development, with out the need of a backend server or a database
+
+The general structure of the data stored in `localStorage`
+
+```json
+[
+    { 
+        cat: "categoryName",
+        links: [
+            { 
+                text: "Link name",
+                url: "Link url"
+            }
+        ]
+    }
+]
+```
+
 ## Personal's Note
 
 Alright I'm pretty much done with this project, 
 but here are a few aspect I could improve on:
 
 - Plan out ui components better before coding, I find myself copy/paste or rewriting code alot (just to make components reusable)
+- use regex to handle input validation
 - Handling states better
   - use redux in bigger projects
   - use context in smaller projects. In this one I find myself passing state down the prop tree quite alot
