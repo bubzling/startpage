@@ -4,7 +4,7 @@
 
 A simple and customizable startpage built using `React`.
 
-## To use
+## For developers
 
 This page is currently hosted on [netlify](https://another-startpage.netlify.app/).
 But if you want to load this faster, I reccomend to do the following
