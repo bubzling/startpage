@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import InputBase from "@material-ui/core/InputBase";
-import useStyles from './Search.style';
+// import InputBase from "@material-ui/core/InputBase";
+// import useStyles from './Search.style';
 
 /* 
   Search bar component
 */
 const SearchBar = (props) => {
   const [search, setSearch] = useState("");
-  const classes = useStyles();
 
   const onSearchChange = (e) => setSearch(e.target.value);
 
@@ -23,8 +22,9 @@ const SearchBar = (props) => {
 
   return (
     <div>
-      <InputBase
-        className={classes.bar}
+      <input
+        type='text'
+        /*className={classes.bar}*/
         placeholder='/search'
         value={search}
         onChange={onSearchChange}

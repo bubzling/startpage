@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import PropTypes from "prop-types";
 
-import style from "./Edit.style";
-
-import { Grid, InputBase, ButtonBase, Typography } from "@material-ui/core";
+// import style from "./Edit.style";
 
 const EditLinks = (props) => {
   const { data, updateLink, deleteLink, catId, id } = props;
@@ -27,37 +25,38 @@ const EditLinks = (props) => {
     setUrl("");
   }, []);
 
-  const classes = style();
   return (
-    <Grid container>
-      <Grid item xs={4}>
-        <InputBase
+    <grid>
+      <div>
+        <input
+          type='text'
           value={text}
           onChange={onTextChange}
           onClick={() => setText(baseText)}
           placeholder={baseText}
         />
-      </Grid>
-      <Grid item xs={4}>
-        <InputBase
+      </div>
+      <div>
+        <input
+          type='text'
           value={url}
           onChange={onUrlChange}
           onClick={() => setUrl(baseUrl)}
           placeholder={baseUrl}
         />
-      </Grid>
-      <Grid item xs={2}>
-        <ButtonBase onClick={update}>
-          <Typography className={classes.button}>[ edit ]</Typography>
-        </ButtonBase>
-      </Grid>
+      </div>
+      <div>
+        <button onClick={update}>
+          <p className={classes.button}>[ edit ]</p>
+        </button>
+      </div>
 
-      <Grid item xs={2}>
-        <ButtonBase onClick={() => deleteLink(catId, id)}>
-          <Typography className={classes.button}>[ del ]</Typography>
-        </ButtonBase>
-      </Grid>
-    </Grid>
+      <div>
+        <button onClick={() => deleteLink(catId, id)}>
+          <p className={classes.button}>[ del ]</p>
+        </button>
+      </div>
+    </grid>
   );
 };
 

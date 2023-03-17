@@ -3,8 +3,7 @@ import React from "react";
 
 import SearchBar from "../../components/Search/SearchBar";
 
-import { Typography, ButtonBase } from "@material-ui/core";
-import styles from "./Default.style";
+// import styles from "./Default.style";
 import Category from "../../components/cat/Category";
 
 const Default = (props) => {
@@ -14,30 +13,24 @@ const Default = (props) => {
   // render link groups on the main page
   const renderLinks = () =>
     list.map((data, i) => (
-      <Category
-        key={i}
-        id={i}
-        data={data}
-        modeOp={modeOp}
-      />
+      <Category key={i} id={i} data={data} modeOp={modeOp} />
     ));
 
-  const classes = styles();
   return (
     <>
       {/* body */}
-      <div className={classes.box}>
+      <div /*className={classes.box}*/>
         {/* add new category */}
-        <ButtonBase onClick={toggleAddMode}>
-          <Typography className={classes.link}>/add_category.sh</Typography>
-        </ButtonBase>
+        <button /*onClick={toggleAddMode}*/>
+          <p /*className={classes.link}*/>/add_category.sh</p>
+        </button>
 
         {/* all links stuff */}
-        { renderLinks() }
+        {renderLinks()}
       </div>
 
       {/* search bar */}
-      <SearchBar className={classes.box} />
+      <SearchBar /*className={classes.box}*/ />
     </>
   );
 };

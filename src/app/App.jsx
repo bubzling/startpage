@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import useStyles from "./App.style";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Default from "../views/default/Default";
 import Title from "../components/title/Title";
 import AddCategory from "../views/addCat/AddCategory";
@@ -19,7 +17,7 @@ const App = (props) => {
         <Edit
           addLink={linkOp.addLink}
           updateLink={linkOp.updateLink}
-          deleteLink = {linkOp.deleteLink}
+          deleteLink={linkOp.deleteLink}
           list={list}
           id={modeOp.catEdit}
           toggle={modeOp.toggleEditMode}
@@ -44,29 +42,28 @@ const App = (props) => {
   return (
     // bg has image
     // main container has a darker
-    <Grid container className={classes.contentContainer}>
-      <Grid item className={classes.contentBackground}>
-        <Box className={classes.content}>
+    <div container className={classes.contentContainer}>
+      <div item className={classes.contentBackground}>
+        <div className={classes.content}>
           <Title />
-
           {renderModes()}
-        </Box>
-      </Grid>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 };
 
-App.propTypes = {
-  list: PropTypes.array.isRequired,
-  categoryOp: PropTypes.exact({
-    addCat: PropTypes.func.isRequired,
-    deleteCat: PropTypes.func.isRequired,
-  }).isRequired,
-  linkOp: PropTypes.exact({
-    addLink: PropTypes.func.isRequired,
-    updateLink: PropTypes.func.isRequired,
-    deleteLink: PropTypes.func.isRequired,
-  }).isRequired,
-};
+// App.propTypes = {
+//   list: PropTypes.array.isRequired,
+//   categoryOp: PropTypes.exact({
+//     addCat: PropTypes.func.isRequired,
+//     deleteCat: PropTypes.func.isRequired,
+//   }).isRequired,
+//   linkOp: PropTypes.exact({
+//     addLink: PropTypes.func.isRequired,
+//     updateLink: PropTypes.func.isRequired,
+//     deleteLink: PropTypes.func.isRequired,
+//   }).isRequired,
+// };
 
 export default App;

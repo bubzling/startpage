@@ -1,35 +1,27 @@
 import React, { useState } from "react";
 // import PropTypes from "prop-types";
 
-import {
-  ButtonBase,
-  Typography,
-  makeStyles,
-  InputBase,
-  Grid,
-} from "@material-ui/core";
-
-const style = makeStyles((theme) => ({
-  toggler: {
-    color: theme.colors.black,
-    fontStyle: "italic",
-    "&:hover": {
-      fontWeight: "bold",
-    },
-    "&:active": {
-      color: theme.colors.offWhite,
-    },
-  },
-  blackText: { color: theme.colors.black },
-  whiteText: { color: theme.colors.offWhite },
-  form: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-  },
-  button: {
-    "&:hover": { fontWeight: "bold" },
-  },
-}));
+// const style = makeStyles((theme) => ({
+//   toggler: {
+//     color: theme.colors.black,
+//     fontStyle: "italic",
+//     "&:hover": {
+//       fontWeight: "bold",
+//     },
+//     "&:active": {
+//       color: theme.colors.offWhite,
+//     },
+//   },
+//   blackText: { color: theme.colors.black },
+//   whiteText: { color: theme.colors.offWhite },
+//   form: {
+//     marginTop: theme.spacing(2),
+//     marginBottom: theme.spacing(2),
+//   },
+//   button: {
+//     "&:hover": { fontWeight: "bold" },
+//   },
+// }));
 
 const AddCategory = (props) => {
   const { toggle, addCat } = props;
@@ -37,42 +29,45 @@ const AddCategory = (props) => {
 
   const onNameChange = (e) => setCatName(e.target.value);
 
-  // submit add 
+  // submit add
   const submit = () => {
     addCat(catName);
     toggle();
   };
 
-  const classes = style();
+  // const classes = style();
   return (
     <>
-      <ButtonBase onClick={toggle}>
-        <Typography variant='h5' className={classes.toggler}>
-          /add_category.sh
-        </Typography>
-      </ButtonBase>
-      <Typography className={classes.blackText}>
-        add new a new <span className={classes.whiteText}>link group</span> for
-        your startpage
-      </Typography>
+      <button onClick={toggle}>
+        <p /*variant='h5' className={classes.toggler}*/>/add_category.sh</p>
+      </button>
+      <p /*className={classes.blackText}*/>
+        add new a new <span /*className={classes.whiteText}*/>link group</span>{" "}
+        for for your startpage
+      </p>
 
       {/* form */}
-      <form className={classes.form} onSubmit={submit}>
-        <Grid container>
-          <Grid item xs={6}>
-            <InputBase value={catName} onChange={onNameChange} placeholder='[category name]' />
-          </Grid>
-          <Grid item xs={2}>
-            <ButtonBase type='submit'>
-              <Typography className={classes.button}>[ add ]</Typography>
-            </ButtonBase>
-          </Grid>
-        </Grid>
+      <form /*className={classes.form}*/ onSubmit={submit}>
+        <div /*container*/>
+          <div /*item xs={6}*/>
+            <input
+              type='text'
+              value={catName}
+              onChange={onNameChange}
+              placeholder='[category name]'
+            />
+          </div>
+          <div /*item xs={2}*/>
+            <button type='submit'>
+              <p /*className={classes.button}*/>[ add ]</p>
+            </button>
+          </div>
+        </div>
       </form>
     </>
   );
 };
 
-AddCategory.propTypes = {};
+// AddCategory.propTypes = {};
 
 export default AddCategory;
