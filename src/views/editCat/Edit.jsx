@@ -66,13 +66,13 @@ const Edit = (props) => {
   );
 
   const edit = () => {
-    if (list[id].links.length > 0)
+    if (list[id].urlList.length > 0)
       return (
         <div className={classes.box}>
           <Typography className={classes.blackText}>
             <span className={classes.whiteText}>edit</span> existing links
           </Typography>
-          {list[id].links.map((data, i) => (
+          {list[id].urlList.map((data, i) => (
             <EditLinks
               key={i}
               catId={id}
@@ -91,7 +91,7 @@ const Edit = (props) => {
       <div className={classes.box}>
         <ButtonBase onClick={toggle}>
           <Typography variant='h5' className={classes.toggler}>
-            /edit.sh -c "{list[id].cat}""
+            /edit.sh -c "{list[id].categoryLabel}""
           </Typography>
         </ButtonBase>
       </div>

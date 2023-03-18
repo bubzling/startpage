@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Category from "../cat/Category";
+import Category from "../at/Category";
 
 /*
     component listing all the LinksCard by their categories

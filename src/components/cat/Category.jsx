@@ -13,7 +13,7 @@ const Category = (props) => {
 
   // render links for category
   const renderLinks = () =>
-    data.links.map((e, i) => {
+    data.urlList.map((e, i) => {
       return (
         <a key={i} className={classes.links} href={`https://${e.url}`}>
           {e.text}
@@ -27,7 +27,7 @@ const Category = (props) => {
         className={classes.category}
         onClick={() => toggleEditMode(id)}
       >
-        /{data.cat}/
+        /{data.categoryLabel}/
       </span>
       {renderLinks()}
     </Typography>

@@ -5,13 +5,10 @@ import React, { useState, useReducer } from "react";
 */
 
 import App from "./App";
+import sample from './sample'
+import { LinkCategory } from "../links.model";
 // import sample from "./sample"
-/* [ data format
-  {
-    groupName: category,
-    links: [ { text, url } ]
-  }
-]*/
+
 const LOCAL = "_allLinks";
 
 const AppContainer = (props) => {
@@ -46,7 +43,8 @@ const AppContainer = (props) => {
   // add new category
   const addCat = (category) => {
     if (category) {
-      let newItem = { cat: category, links: [] };
+      // let newItem = { categoryLabel: category, links: [] };
+      let newItem = new LinkCategory(category)
       let newList = [...list, newItem];
       save(newList);
     } else alert("empty cat");

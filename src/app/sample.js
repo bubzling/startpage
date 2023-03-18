@@ -1,7 +1,9 @@
+import { AppModel } from "../links.model";
+
 const list = [
   {
-    cat: "School",
-    links: [
+    categoryLabel: "School",
+    urlList: [
       { text: "Mail", url: "email.itd.uts.edu.au/email/" },
       { text: "BlackBoard", url: "online.uts.edu.au/webapps/login/" },
       { text: "Canvas", url: "canvas.uts.edu.au/" },
@@ -9,8 +11,8 @@ const list = [
     ],
   },
   {
-    cat: "Chill",
-    links: [
+    categoryLabel: "Chill",
+    urlList: [
       { text: "youtube", url: "www.youtube.com/" },
       { text: "reddit", url: "reddit.com/" },
       { text: "twitch", url: "www.twitch.tv/" },
@@ -19,4 +21,10 @@ const list = [
   },
 ];
 
-export default list;
+let classList = new AppModel();
+classList.addCategory('Egg');
+
+console.log("hello")
+console.log(classList.categories)
+
+export default classList;
