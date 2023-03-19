@@ -27,7 +27,7 @@ JSON string in local storage
 // stored as json string in local storage
 [
     {
-        cat: "category name",
+        categoryLabel: "category name",
         links: [
             { text: "display name", url: "link"}
         ]

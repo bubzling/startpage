@@ -17,6 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "testjs": "react-scripts testJs",
     "eject": "react-scripts eject",
     "lint": "eslint --fix . && echo 'Linting complete'"
   },
@@ -38,4 +39,6 @@
   "devDependencies": {
     "prettier": "^2.2.1"
   }
+  , 
+  "type": "module"
 }

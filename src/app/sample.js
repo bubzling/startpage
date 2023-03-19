@@ -1,4 +1,4 @@
-import { AppModel } from "../links.model";
+import { AppModel, LinkModel } from "../models/links.model";
 
 const list = [
   {
@@ -26,5 +26,16 @@ classList.addCategory('Egg');
 
 console.log("hello")
 console.log(classList.categories)
+
+/* I need a way to cast json into class objects */
+
+// test addLink
+// test addLink from plain
+
+// test updateLink
+// test updateLink from plain
+
+// test deleteLink
+// test deleteLink from plain
 
 export default classList;

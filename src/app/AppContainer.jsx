@@ -6,7 +6,7 @@ import React, { useState, useReducer } from "react";
 
 import App from "./App";
 import sample from './sample'
-import { LinkCategory } from "../links.model";
+import { LinkCategoryModel } from "../models/links.model";
 // import sample from "./sample"
 
 const LOCAL = "_allLinks";
@@ -44,7 +44,7 @@ const AppContainer = (props) => {
   const addCat = (category) => {
     if (category) {
       // let newItem = { categoryLabel: category, links: [] };
-      let newItem = new LinkCategory(category)
+      let newItem = new LinkCategoryModel(category)
       let newList = [...list, newItem];
       save(newList);
     } else alert("empty cat");

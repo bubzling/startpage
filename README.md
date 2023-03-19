@@ -53,8 +53,8 @@ The general structure of the data stored in `localStorage`
 ```json
 [
     { 
-        cat: "categoryName",
-        links: [
+        categoryLabel: "categoryName",
+        urlList: [
             { 
                 text: "Link name",
                 url: "Link url"
@@ -74,3 +74,16 @@ but here are a few aspect I could improve on:
 - Handling states better
   - use redux in bigger projects
   - use context in smaller projects. In this one I find myself passing state down the prop tree quite alot
+
+## Refactoring TODOs
+
+Adding classes to set a standard model for stored data. why?
+to set a standard and make maintenance easier
+- Implement classes
+- Implement a way to parse plain objects into class
+  - method 1 use `Object.assign`
+  - method 2 parse plain objects in constructors
+
+Setup Routes
+- this removes the need for active page boolean
+- remove that conditional rendering nonsense in `App` Component
