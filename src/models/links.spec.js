@@ -1,8 +1,4 @@
-import { LinkCategoryModel, LinkModel } from "./links.model";
-
-let plainJsonList = [
-
-]
+import { AppModel, LinkCategoryModel, LinkModel } from "./links.model";
 
 describe("LinkModel model class testing", () => {
     it('initializing class object normally', () => { 
@@ -26,6 +22,7 @@ describe("LinkModel model class testing", () => {
         }
 
         let linkObject = new LinkModel(null, null, null, expectedObject);
+        expectedObject.id = null;
 
         expect(linkObject).toMatchObject(expectedObject);
     })
@@ -112,7 +109,6 @@ describe("LinkCategory model class testing", () => {
             expect(testObject).toMatchObject(expectedObject);
         }); 
 
-
         it('addLink', () => {
             const expectedCategory = {
                 categoryLabel: 'testCategory',
@@ -178,7 +174,46 @@ describe("LinkCategory model class testing", () => {
 })
 
 describe("AppData model class testing", () => {
-    test('should one', () => { 
-        expect(1).toBe(1);
+    it('deep object parsing', () => { 
+        const expectedModel = {
+            AppData: [
+                {
+                    categoryLabel: 'cheese',
+                    urlList: [
+                        { id: 0, label: "Canvas", url: "canvas.uts.edu.au/" },
+                        { id: 1, label: "Github", url: "github.com/" },
+                    ]
+                },
+                {
+                    categoryLabel: 'egg',
+                    urlList: []
+                }
+            ] 
+        }
+
+        const testModel = new AppModel(...expectedModel.AppData);
+
+        expect(testModel).toMatchObject(expectedModel);
+    })
+
+    it('add new category', () => { 
+        let testModel = new AppModel();
+        testModel.addCategory('cheese');
+        testModel.addCategory('egg');
+
+        const expectedModel = {
+            AppData: [
+                {
+                    categoryLabel: 'cheese',
+                    urlList: []
+                },
+                {
+                    categoryLabel: 'egg',
+                    urlList: []
+                }
+            ] 
+        }
+
+        expect(testModel).toMatchObject(expectedModel);
     })
 })

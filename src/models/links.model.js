@@ -14,11 +14,13 @@
 
 // ok
 export const AppModel = class {
-    constructor(appDataJson) {
+    AppData = [];
+    constructor(...appDataJson) {
         if(appDataJson) {
-            // go deep and parse the json
-        } else {
-            this.AppData = [];
+            appDataJson.forEach(e => {
+                console.log(e)
+                this.AppData.push(new LinkCategoryModel(null, e));
+            })
         }
     }
 
@@ -39,9 +41,11 @@ export const LinkCategoryModel = class {
     constructor(label, parseObject) {
         if(parseObject) {
             this.categoryLabel = parseObject.categoryLabel;
+
             if(parseObject.urlList.length > 0)
-                parseObject.urlList.forEach(e =>
-                    this.urlList.push(new LinkModel(null, null , this.#linkID++ ,e)));
+                parseObject.urlList.forEach(e => {
+                    this.urlList.push(new LinkModel(null, null , this.#linkID++ ,e));
+                });
         } else {
             this.categoryLabel = label;
         }
@@ -77,7 +81,7 @@ export const LinkCategoryModel = class {
 export const LinkModel = class {
     constructor(label, url, id, parseObject) {
         if(parseObject) {
-            this.id = parseObject.id;
+            this.id = id;
             this.label = parseObject.label;
             this.url = parseObject.url;
         } else {
