@@ -1,26 +1,24 @@
 import React, { useState, useReducer } from "react";
 
+import App from "./App";
+
+import { LinkCategoryModel } from "../models/links.model";
+
 /*
   Main container for startpage
 */
-
-import App from "./App";
-import sample from './sample'
-import { LinkCategoryModel } from "../models/links.model";
-// import sample from "./sample"
 
 const LOCAL = "_allLinks";
 
 const AppContainer = (props) => {
   const DATA = JSON.parse(localStorage.getItem(LOCAL));
-  // const DATA = sample;
-  // hacky way to refresh rendering
-  const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
   const [list, setList] = useState(DATA || []);
   const [addMode, setAddMode] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [catEdit, setCatEdit] = useState(0);
+  // hacky way to refresh rendering
+  const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
   const toggleAddMode = () => {
     setEditMode(false);
