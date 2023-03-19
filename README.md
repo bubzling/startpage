@@ -79,11 +79,18 @@ but here are a few aspect I could improve on:
 
 Adding classes to set a standard model for stored data. why?
 to set a standard and make maintenance easier
-- Implement classes
-- Implement a way to parse plain objects into class
-  - method 1 use `Object.assign`
-  - method 2 parse plain objects in constructors
+- refactor old code to use class
+  - [x] add category
+  - [-] add link
+  - [ ] update link
+  - [ ] delete link
+- refactor old code to use the class's pre-defined function 
+> Ignoring above to do a complete rewrite, using context
 
 Setup Routes
 - this removes the need for active page boolean
 - remove that conditional rendering nonsense in `App` Component
+
+Setup Context
+- this is needed to use classes
+- passing down via props is fugly

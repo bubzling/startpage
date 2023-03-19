@@ -25,7 +25,7 @@ const Category = (props) => {
     <Typography>
       <span
         className={classes.category}
-        onClick={() => toggleEditMode(id)}
+        onClick={() => toggleEditMode(id, data)}
       >
         /{data.categoryLabel}/
       </span>

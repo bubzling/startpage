@@ -1,22 +1,32 @@
 import React, { useState, useReducer } from "react";
 
 import App from "./App";
-
-import { LinkCategoryModel } from "../models/links.model";
+import { AppModel, LinkCategoryModel } from "../models/links.model";
+import { AppContextProvider, useAppContext } from "../app.context";
 
 /*
   Main container for startpage
 */
 
+
 const LOCAL = "_allLinks";
 
 const AppContainer = (props) => {
+  const { one } = useAppContext();
+
+  console.log("using context", one)
+
+  // on app start
+  // read local storage for data
+  // if not assign new AppState 
   const DATA = JSON.parse(localStorage.getItem(LOCAL));
+  // const DATA = new AppModel(JSON.parse(localStorage.getItem(LOCAL)));
 
   const [list, setList] = useState(DATA || []);
   const [addMode, setAddMode] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [catEdit, setCatEdit] = useState(0);
+  const [categoryObj, setCategoryObj] = useState({});
   // hacky way to refresh rendering
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
@@ -25,8 +35,9 @@ const AppContainer = (props) => {
     setAddMode(!addMode);
   }
 
-  const toggleEditMode = (categoryID) => {
+  const toggleEditMode = (categoryID, categoryObj) => {
     setAddMode(false);
+    setCategoryObj(categoryObj)
     setCatEdit(categoryID);
     setEditMode(!editMode);
   }
@@ -50,16 +61,14 @@ const AppContainer = (props) => {
   };
 
   // add new link
-  const addLink = (catID, text, url) => {
-    if (catID !== -1 && text && url) {
-      let newList = list.slice();
-      // set new list
-      newList[catID] = {
-        ...newList[catID],
-        links: [...newList[catID].links, { text, url }],
-      };
-      save(newList);
-    } else alert("missing selection");
+  // TODO: pass the category in here instead of ID
+  const addLink = (category, label, url) => {
+    if (!!category && label && url) {
+      
+      category.addLink(label, url);
+
+      save(this.list);
+    } else alert("Error adding new link");
     forceUpdate();
   };
 
@@ -85,12 +94,14 @@ const AppContainer = (props) => {
   };
 
   // ======================================================================
-  const modeOp = { toggleEditMode, toggleAddMode, catEdit, addMode, editMode };
+  const modeOp = { toggleEditMode, toggleAddMode, categoryObj, catEdit, addMode, editMode };
   const categoryOp = { addCat, deleteCat };
   const linkOp = { addLink, updateLink, deleteLink }
 
   return (
-    <App list={list} categoryOp={categoryOp} linkOp={linkOp} modeOp={modeOp}/>
+    <AppContextProvider>
+      <App list={list} categoryOp={categoryOp} linkOp={linkOp} modeOp={modeOp}/>
+    </AppContextProvider>
   );
 };
 

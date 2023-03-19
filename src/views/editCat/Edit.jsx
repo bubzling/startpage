@@ -22,17 +22,20 @@ import style from "./Edit.style";
 */
 
 const Edit = (props) => {
-  const { id, toggle, list, addLink, updateLink, deleteLink } = props;
+  const { id, categoryObj, toggle, list, addLink, updateLink, deleteLink } = props;
   const [linkText, setLinkText] = useState("");
   const [linkUrl, setLinkUrl] = useState("");
 
   const onTextChange = (e) => setLinkText(e.target.value);
   const onUrlChange = (e) => setLinkUrl(e.target.value);
   const addNewLink = () => {
-    addLink(id, linkText, linkUrl);
+    addLink(categoryObj, linkText, linkUrl);
     setLinkText("");
     setLinkUrl("");
   };
+
+  console.log(addLink) 
+  console.log(categoryObj)
 
   const classes = style();
 

@@ -22,6 +22,7 @@ const App = (props) => {
           deleteLink = {linkOp.deleteLink}
           list={list}
           id={modeOp.catEdit}
+          categoryObj={modeOp.categoryObj}
           toggle={modeOp.toggleEditMode}
         />
       );
