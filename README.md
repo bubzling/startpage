@@ -1,96 +1,38 @@
-![image](./assets/st01.png)
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-[![debubz/startpage CI](https://github.com/deBubz/startpage/actions/workflows/node.js.yml/badge.svg)](https://github.com/deBubz/startpage/actions/workflows/node.js.yml)
+## Getting Started
 
-A simple and customizable startpage built using `React`.
+First, run the development server:
 
-## For developers
-
-This page is currently hosted on [netlify](https://another-startpage.netlify.app/).
-But if you want to load this faster, I reccomend to do the following
-
-### Run locally
-
-1. clone/download this repo
-2. install project dependencies by running
-```
-yarn
-```
-3. build the static files 
-```
-yarn build
-```
-4. serve the static page
-```sh
-serve -s build -l <PORT_NUMBER>
+```bash
+npm run dev
 # or
-serve /path/to/build -l <PORT_NUMBER>
-```
-> **NOTE**: this starts a static server process locally on your machine.
-> This processed will be killed every time you turn your computer off.
->
-> You may need to create a script(step 4) which runs everytime your machine is booted up.
-
-5. Get the browser extention for [firefox](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) or [chrome](https://chrome.google.com/webstore/detail/custom-new-tab-url/mmjbdbjnoablegbkcklggeknkfcjkjia?hl=en)
-6. set the new tab url to be where the page is served 
-
-### Development mode
-
-Simply clone the repo, install dependencies then 
-```
-yarn start
+yarn dev
+# or
+pnpm dev
 ```
 
-## Some Info
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This webapp needs to load quickly as its ment to be a part of a user's workflow.
-Therefore, the data for this app is stored in the `localStorage`. Which:
-- provide a quick access to render user shorcut links
-- allow faster development, with out the need of a backend server or a database
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-The general structure of the data stored in `localStorage`
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-```json
-[
-    { 
-        categoryLabel: "categoryName",
-        urlList: [
-            { 
-                text: "Link name",
-                url: "Link url"
-            }
-        ]
-    }
-]
-```
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Personal's Note
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-Alright I'm pretty much done with this project, 
-but here are a few aspect I could improve on:
+## Learn More
 
-- Plan out ui components better before coding, I find myself copy/paste or rewriting code alot (just to make components reusable)
-- use regex to handle input validation
-- Handling states better
-  - use redux in bigger projects
-  - use context in smaller projects. In this one I find myself passing state down the prop tree quite alot
+To learn more about Next.js, take a look at the following resources:
 
-## Refactoring TODOs
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Adding classes to set a standard model for stored data. why?
-to set a standard and make maintenance easier
-- refactor old code to use class
-  - [x] add category
-  - [-] add link
-  - [ ] update link
-  - [ ] delete link
-- refactor old code to use the class's pre-defined function 
-> Ignoring above to do a complete rewrite, using context
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-Setup Routes
-- this removes the need for active page boolean
-- remove that conditional rendering nonsense in `App` Component
+## Deploy on Vercel
 
-Setup Context
-- this is needed to use classes
-- passing down via props is fugly
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
