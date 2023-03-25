@@ -1,3 +1,17 @@
+
+Project TODO
+- [ ] Set up links for pages
+  - [ ] Homepage
+  - [ ] Add page
+  - [ ] Edit Page
+- [ ] Figure Out NextJS Forms
+  - [ ] Start with Add Page
+- [ ] Figure out Context start with LinkGroups(category rename)
+
+
+---
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
