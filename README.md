@@ -1,12 +1,13 @@
 
 Project TODO
-- [ ] Set up links for pages
-  - [ ] Homepage
-  - [ ] Add page
-  - [ ] Edit Page
+- [x] Set up links for pages
+  - [x] Homepage
+  - [x] Add page
+  - [x] Edit Page
 - [ ] Figure Out NextJS Forms
   - [ ] Start with Add Page
 - [ ] Figure out Context start with LinkGroups(category rename)
+- [ ] Figure out how to pass data throughout
 
 
 ---
