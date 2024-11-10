@@ -1,8 +1,0 @@
-# ignoring notes
-*.md
-
-# node stuff
-package-lock.json
-.next
-node_modules/
-.eslintrc
